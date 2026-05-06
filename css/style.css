@@ -501,7 +501,8 @@ p { color: var(--gray-600); }
   align-items: center;
   background: var(--navy-dark);
   overflow: hidden;
-  padding-block: 80px;
+  padding-top: clamp(100px, 14vw, 180px);
+  padding-bottom: 80px;
 }
 .hero-bg {
   position: absolute;
@@ -1462,6 +1463,10 @@ p { color: var(--gray-600); }
   background: linear-gradient(90deg, var(--blue-mid), var(--blue));
   color: var(--white);
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   padding: 12px;
   font-size: var(--text-sm);
   font-weight: 600;
@@ -1543,7 +1548,7 @@ p { color: var(--gray-600); }
   .steps-grid::before { display: none; }
   .hero-badge { display: none; }
   .info-grid { grid-template-columns: 1fr; gap: 40px; }
-  .info-img { max-width: 540px; }
+  .info-img { max-width: 540px; aspect-ratio: unset; height: auto; min-height: 0; }
   .price-cards { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
   .contacts-grid { grid-template-columns: 1fr; }
   .comparison-grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
