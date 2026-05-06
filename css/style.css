@@ -1618,6 +1618,7 @@ p { color: var(--gray-600); }
   background: linear-gradient(160deg, var(--navy-dark) 0%, #0D2E5A 50%, var(--navy) 100%);
   position: relative;
   overflow: hidden;
+  padding-block: clamp(64px, 9vw, 112px);
 }
 .quiz-section::before {
   content: '';
