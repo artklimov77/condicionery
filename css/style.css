@@ -1878,11 +1878,17 @@ p { color: var(--gray-600); }
   padding-top: 14px; border-top: 1px solid var(--gray-200);
   margin-bottom: 20px; line-height: 1.5;
 }
-.promo-countdown { display: flex; gap: 8px; margin-bottom: 24px; }
+.promo-prices { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.promo-old { font-size: var(--text-sm); color: var(--gray-400); text-decoration: line-through; }
+.promo-new { font-size: var(--text-xl); font-weight: 800; color: var(--blue); }
+.promo-countdown { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.cd-label { font-size: var(--text-sm); color: var(--gray-500); font-weight: 500; }
+.cd-units { display: flex; gap: 8px; flex-wrap: nowrap; }
 .cd-unit {
   text-align: center;
   background: var(--navy); color: var(--white);
-  border-radius: var(--r-sm); padding: 10px 14px; min-width: 52px;
+  border-radius: var(--r-sm); padding: 10px 14px; min-width: 56px;
+  flex-shrink: 0;
 }
 .promo-card.featured .cd-unit { background: rgba(0,0,0,.25); }
 .cd-num { font-size: var(--text-2xl); font-weight: 900; line-height: 1; display: block; }
