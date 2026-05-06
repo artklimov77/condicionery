@@ -334,8 +334,8 @@ p { color: var(--gray-600); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding-block: 16px;
+  gap: 12px;
+  padding-block: 14px;
 }
 
 .logo {
@@ -363,18 +363,19 @@ p { color: var(--gray-600); }
 }
 .logo-tagline { font-size: var(--text-xs); color: rgba(255,255,255,.45); font-weight: 400; margin-top: 1px; }
 
-.nav { display: flex; align-items: center; gap: 4px; }
+.nav { display: flex; align-items: center; gap: 2px; flex-shrink: 0; }
 .nav-link {
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: var(--text-sm);
+  gap: 4px;
+  font-size: 13px;
   font-weight: 500;
   color: rgba(255,255,255,.7);
-  padding: 8px 14px;
+  padding: 7px 10px;
   border-radius: var(--r-sm);
   transition: all var(--dur) var(--ease);
   position: relative;
+  white-space: nowrap;
 }
 .nav-link:hover { color: var(--white); background: rgba(255,255,255,.08); }
 .nav-link.active { color: var(--white); }
@@ -428,11 +429,12 @@ p { color: var(--gray-600); }
 .nav-dropdown-item:hover { background: var(--blue-pale); color: var(--blue-mid); }
 .nav-dropdown-item svg { color: var(--blue-light); flex-shrink: 0; }
 
-.header-actions { display: flex; align-items: center; gap: 12px; }
+.header-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .header-phone {
-  font-size: var(--text-base);
+  font-size: 13px;
   font-weight: 700;
   color: var(--white);
+  white-space: nowrap;
   transition: color var(--dur) var(--ease);
 }
 .header-phone:hover { color: var(--sky); }
