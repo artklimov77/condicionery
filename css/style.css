@@ -157,6 +157,20 @@ p { color: var(--gray-600); }
 .section-desc { font-size: var(--text-lg); color: var(--gray-500); line-height: 1.7; }
 .section--navy .section-title, .section--blue .section-title { color: var(--white); }
 .section--navy .section-desc, .section--blue .section-desc { color: rgba(255,255,255,.7); }
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: var(--text-sm); font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--blue-mid); background: var(--blue-pale);
+  border: 1px solid var(--blue-border);
+  padding: 6px 14px; border-radius: var(--r-full); margin-bottom: 16px;
+}
+.section-sub { font-size: var(--text-lg); color: var(--gray-500); line-height: 1.7; }
+.quiz-section .section-label, .zones-section .section-label {
+  color: var(--sky); background: rgba(59,130,246,.15); border-color: rgba(59,130,246,.3);
+}
+.quiz-section .section-title, .zones-section .section-title { color: var(--white); }
+.quiz-section .section-sub, .zones-section .section-sub { color: rgba(255,255,255,.65); }
 
 /* === GRID UTILITIES === */
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
