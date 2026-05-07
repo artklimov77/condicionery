@@ -169,40 +169,57 @@ async function checkSession() {
 }
 
 // ---- Login ----
-document.getElementById('login-form').addEventListener('submit', async function (e) {
-  e.preventDefault();
-  const email = document.getElementById('login-email').value.trim();
-  const password = document.getElementById('login-password').value;
-  const btn = document.getElementById('login-btn');
-  const errorEl = document.getElementById('login-error');
+async function handleLogin() {
+  var email = document.getElementById('login-email').value.trim();
+  var password = document.getElementById('login-password').value;
+  var btn = document.getElementById('login-btn');
+  var errorEl = document.getElementById('login-error');
+
+  if (!email || !password) {
+    errorEl.textContent = 'Введите email и пароль.';
+    errorEl.classList.add('visible');
+    return;
+  }
+
+  if (!supabase) {
+    errorEl.textContent = 'Ошибка подключения к базе данных. Обновите страницу.';
+    errorEl.classList.add('visible');
+    return;
+  }
 
   errorEl.classList.remove('visible');
   btn.disabled = true;
   btn.textContent = 'Вхожу...';
 
   try {
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    var result = await supabase.auth.signInWithPassword({ email: email, password: password });
 
-    if (error) {
-      let msg = 'Неверный email или пароль. Попробуйте снова.';
-      if (error.message && error.message.toLowerCase().includes('email')) {
-        msg = 'Пользователь с таким email не найден.';
-      }
-      errorEl.textContent = msg;
+    if (result.error) {
+      errorEl.textContent = 'Неверный email или пароль. Попробуйте снова.';
       errorEl.classList.add('visible');
       btn.disabled = false;
       btn.textContent = 'Войти в панель управления';
       return;
     }
 
-    currentUser = data.user;
+    currentUser = result.data.user;
     await enterApp();
 
   } catch (err) {
-    errorEl.textContent = 'Сетевая ошибка. Проверьте интернет-соединение.';
+    errorEl.textContent = 'Ошибка: ' + (err.message || 'проверьте интернет-соединение');
     errorEl.classList.add('visible');
     btn.disabled = false;
     btn.textContent = 'Войти в панель управления';
+  }
+}
+
+// Also handle Enter key in password field
+document.addEventListener('DOMContentLoaded', function() {
+  var pwField = document.getElementById('login-password');
+  if (pwField) {
+    pwField.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleLogin();
+    });
   }
 });
 
@@ -796,6 +813,7 @@ window.switchTab = switchTab;
 window.saveSection = saveSection;
 window.handleImageUpload = handleImageUpload;
 window.logout = logout;
+window.handleLogin = handleLogin;
 window.showChangePassword = showChangePassword;
 window.closePwModal = closePwModal;
 window.doChangePassword = doChangePassword;
