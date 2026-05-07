@@ -8,14 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=10">
+  <link rel="stylesheet" href="css/style.css?v=11">
 </head>
 <body>
 
 <!-- Notice Bar -->
 <div class="notice-bar">
   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="flex-shrink:0;opacity:.9"><path d="M13 2L4.09 12.97A1 1 0 005 14.5h6.5L10 22l9.5-11.03A1 1 0 0018.5 9.5H12L13 2z"/></svg>
-  <strong>Сезон начался!</strong> Цены растут каждые 3 дня — <a href="contacts.html">зафиксируйте свою цену прямо сейчас</a>
+  <span data-cms="index.notice"><strong>Сезон начался!</strong> Цены растут каждые 3 дня — <a href="contacts.html">зафиксируйте свою цену прямо сейчас</a></span>
   <button class="notice-dismiss" aria-label="Закрыть" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.6);font-size:18px;line-height:1;">✕</button>
 </div>
 
@@ -39,7 +39,7 @@
       </div>
       <div class="topbar-right">
         <a href="mailto:ahdpuxe@mail.ru" class="topbar-item">ahdpuxe@mail.ru</a>
-        <a href="tel:+79316340087" class="topbar-phone">+7 (931) 634-00-87</a>
+        <a href="tel:+79316340087" class="topbar-phone" data-cms="global.phone_href" data-cms-type="href"><span data-cms="global.phone">+7 (931) 634-00-87</span></a>
       </div>
     </div>
   </div>
@@ -85,7 +85,7 @@
           <a href="contacts.html" class="nav-link">Контакты</a>
         </nav>
         <div class="header-actions">
-          <a href="tel:+79316340087" class="header-phone">+7 (931) 634-00-87</a>
+          <a href="tel:+79316340087" class="header-phone" data-cms="global.phone_href" data-cms-type="href"><span data-cms="global.phone">+7 (931) 634-00-87</span></a>
           <a href="contacts.html" class="btn btn-primary btn-sm">Оставить заявку</a>
         </div>
         <button class="burger" aria-label="Меню" aria-expanded="false">
@@ -152,11 +152,11 @@
           <span class="hero-dot"></span>
           Санкт-Петербург и Ленинградская область
         </div>
-        <h1 class="hero-title">
+        <h1 class="hero-title" data-cms="index.hero.title">
           Климатический комфорт<br>
           <span class="accent">под ключ</span>
         </h1>
-        <p class="hero-subtitle">
+        <p class="hero-subtitle" data-cms="index.hero.subtitle">
           Продажа, монтаж и обслуживание кондиционеров, тепловых насосов и систем вентиляции. Работаем без посредников — только профессионалы с опытом от 10 лет.
         </p>
         <div class="hero-actions">
@@ -1014,8 +1014,8 @@
     <div class="container">
       <div class="cta-banner reveal">
         <div class="cta-content">
-          <h2 class="cta-title">Готовы обсудить ваш проект?</h2>
-          <p class="cta-desc">Получите бесплатный расчёт стоимости в течение 15 минут. Работаем 7 дней в неделю, с 9:00 до 21:00.</p>
+          <h2 class="cta-title" data-cms="index.cta.title">Готовы обсудить ваш проект?</h2>
+          <p class="cta-desc" data-cms="index.cta.desc">Получите бесплатный расчёт стоимости в течение 15 минут. Работаем 7 дней в неделю, с 9:00 до 21:00.</p>
         </div>
         <div class="cta-actions">
           <a href="contacts.html" class="btn btn-white btn-lg">
@@ -1133,6 +1133,8 @@
   </div>
 </footer>
 
+<script src="js/cms-config.js"></script>
+<script src="js/cms.js"></script>
 <script src="js/main.js?v=8"></script>
 </body>
 </html>
