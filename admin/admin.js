@@ -206,7 +206,8 @@ async function handleLogin() {
     await enterApp();
 
   } catch (err) {
-    showLoginError('Ошибка сети: ' + err.message);
+    var debugUrl = SB_URL ? SB_URL.replace('https://', '').split('.')[0] : '(URL не задан!)';
+    showLoginError('Ошибка сети: ' + err.message + ' [проект: ' + debugUrl + ']');
     btn.disabled = false;
     btn.textContent = 'Войти в панель управления';
   }
