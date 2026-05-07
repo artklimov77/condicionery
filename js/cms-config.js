@@ -5,6 +5,6 @@
 // Найти их можно в: Supabase Dashboard → Project Settings → API
 //
 window.CMS_CONFIG = {
-  supabaseUrl: 'YOUR_SUPABASE_PROJECT_URL',   // Пример: https://abcdefghij.supabase.co
-  supabaseKey: 'YOUR_SUPABASE_ANON_KEY'        // Публичный anon key (не secret key!)
+  supabaseUrl: 'https://ebdtorzobbykcfhckdpt.supabase.co',
+  supabaseKey: 'sb_publishable_at0irzlKPZz-eGNgkq2c_g_GGjkUTrn'
 };
