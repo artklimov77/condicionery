@@ -209,6 +209,12 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.style.background = 'var(--green)';
         btn.disabled = true;
 
+        const data = { formType: form.dataset.formType || 'Форма обратной связи' };
+        form.querySelectorAll('input, textarea, select').forEach(f => {
+          if (f.name) data[f.name] = f.value.trim();
+        });
+        fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).catch(() => {});
+
         setTimeout(() => {
           btn.innerHTML = originalText;
           btn.style.background = '';
@@ -409,6 +415,8 @@ document.addEventListener('DOMContentLoaded', () => {
           submitBtn.disabled = true;
           submitBtn.style.background = 'var(--green, #22c55e)';
         }
+        const quizData = { formType: 'Квиз', 'quiz-name': nameVal.value.trim(), 'quiz-phone': phoneVal.value.trim() };
+        fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(quizData) }).catch(() => {});
       });
       quizForm.querySelectorAll('input').forEach(inp => {
         inp.addEventListener('input', () => inp.classList.remove('error'));
