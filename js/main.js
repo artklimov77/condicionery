@@ -209,11 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.style.background = 'var(--green)';
         btn.disabled = true;
 
-        const data = { formType: form.dataset.formType || 'Форма обратной связи' };
+        const data = { _subject: 'Заявка NordicAir — ' + (form.querySelector('[name="name"]')?.value || form.querySelector('[name="phone"]')?.value || 'Клиент') };
         form.querySelectorAll('input, textarea, select').forEach(f => {
-          if (f.name) data[f.name] = f.value.trim();
+          if (f.name && !f.name.startsWith('_')) data[f.name] = f.value.trim();
         });
-        fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).catch(() => {});
+        fetch('https://formsubmit.co/ajax/artklimov77@yandex.com', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) }).catch(() => {});
 
         setTimeout(() => {
           btn.innerHTML = originalText;
@@ -415,8 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
           submitBtn.disabled = true;
           submitBtn.style.background = 'var(--green, #22c55e)';
         }
-        const quizData = { formType: 'Квиз', 'quiz-name': nameVal.value.trim(), 'quiz-phone': phoneVal.value.trim() };
-        fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(quizData) }).catch(() => {});
+        fetch('https://formsubmit.co/ajax/artklimov77@yandex.com', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ _subject: 'Квиз NordicAir — ' + nameVal.value.trim(), name: nameVal.value.trim(), phone: phoneVal.value.trim() }) }).catch(() => {});
       });
       quizForm.querySelectorAll('input').forEach(inp => {
         inp.addEventListener('input', () => inp.classList.remove('error'));
