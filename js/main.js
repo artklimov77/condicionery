@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.style.background = 'var(--green)';
         btn.disabled = true;
 
-        const data = { _subject: 'Заявка NordicAir — ' + (form.querySelector('[name="name"]')?.value || form.querySelector('[name="phone"]')?.value || 'Клиент') };
+        const data = { _subject: 'Заявка NordicAir — ' + (form.querySelector('[name="name"]')?.value || form.querySelector('[name="phone"]')?.value || 'Клиент'), _cc: '73d32eemqeizlktj1ieb@task.yougile.com' };
         form.querySelectorAll('input, textarea, select').forEach(f => {
           if (f.name && !f.name.startsWith('_')) data[f.name] = f.value.trim();
         });
@@ -415,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
           submitBtn.disabled = true;
           submitBtn.style.background = 'var(--green, #22c55e)';
         }
-        fetch('https://formsubmit.co/ajax/artklimov77@yandex.com', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ _subject: 'Квиз NordicAir — ' + nameVal.value.trim(), name: nameVal.value.trim(), phone: phoneVal.value.trim() }) }).catch(() => {});
+        fetch('https://formsubmit.co/ajax/artklimov77@yandex.com', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ _subject: 'Квиз NordicAir — ' + nameVal.value.trim(), _cc: '73d32eemqeizlktj1ieb@task.yougile.com', name: nameVal.value.trim(), phone: phoneVal.value.trim() }) }).catch(() => {});
       });
       quizForm.querySelectorAll('input').forEach(inp => {
         inp.addEventListener('input', () => inp.classList.remove('error'));
