@@ -127,12 +127,28 @@
         Акции
       </button>
 
-      <button class="sidebar-link" data-tab="services" onclick="switchTab('services')">
+      <button class="sidebar-link" data-tab="conditioners" onclick="switchTab('conditioners')">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="3"/>
-          <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/>
+          <rect x="2" y="3" width="20" height="8" rx="2"/>
+          <path d="M6 11v8M12 11v5M18 11v8"/>
+          <path d="M4 19h4M10 16h4M16 19h4"/>
         </svg>
-        Услуги
+        Кондиционеры
+      </button>
+
+      <button class="sidebar-link" data-tab="heat" onclick="switchTab('heat')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+          <path d="M12 6v6l4 2"/>
+        </svg>
+        Тепловые насосы
+      </button>
+
+      <button class="sidebar-link" data-tab="ventilation" onclick="switchTab('ventilation')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1010 16H2m15.73-8.27A2 2 0 1119 12H2"/>
+        </svg>
+        Вентиляция
       </button>
 
       <button class="sidebar-link" data-tab="about" onclick="switchTab('about')">
@@ -141,6 +157,14 @@
           <circle cx="12" cy="7" r="4"/>
         </svg>
         О компании
+      </button>
+
+      <button class="sidebar-link" data-tab="contacts_page" onclick="switchTab('contacts_page')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        Страница контактов
       </button>
     </nav>
 
