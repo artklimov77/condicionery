@@ -10,37 +10,37 @@ const SECTIONS = [
     id: 'contacts', title: 'Контакты',
     subtitle: 'Телефоны, адрес, часы работы — обновляются на всех страницах сайта',
     fields: [
-      { key: 'global.phone',       label: 'Телефон (отображение)',      type: 'text', placeholder: '+7 (931) 634-00-87' },
-      { key: 'global.phone_href',  label: 'Телефон href (ссылка)',       type: 'text', placeholder: 'tel:+79316340087' },
-      { key: 'global.hours',       label: 'Часы работы (коротко)',       type: 'text', placeholder: 'Пн–Вс: 9:00–21:00' },
-      { key: 'global.hours_full',  label: 'Часы работы (полные)',        type: 'text', placeholder: 'Понедельник–Воскресенье: 9:00–21:00' },
-      { key: 'global.address',     label: 'Адрес',                      type: 'text', placeholder: 'Санкт-Петербург' },
-      { key: 'global.email',       label: 'Email',                      type: 'text', placeholder: 'info@nordicair.ru' },
-      { key: 'global.telegram',    label: 'Telegram ссылка',            type: 'text', placeholder: 'https://t.me/+79316340087' },
-      { key: 'global.whatsapp',    label: 'WhatsApp ссылка',            type: 'text', placeholder: 'https://wa.me/79316340087' },
-      { key: 'global.reviews_url', label: 'Яндекс.Отзывы — ссылка',    type: 'text', placeholder: 'https://yandex.ru/maps/org/...' },
+      { key: 'global.phone',       label: 'Телефон (отображение)',    type: 'text', default: '+7 (931) 634-00-87' },
+      { key: 'global.phone_href',  label: 'Телефон href (ссылка)',     type: 'text', default: 'tel:+79316340087' },
+      { key: 'global.hours',       label: 'Часы работы (коротко)',     type: 'text', default: 'Пн–Вс: 9:00–21:00' },
+      { key: 'global.hours_full',  label: 'Часы работы (полные)',      type: 'text', default: 'Понедельник–Воскресенье: 9:00–21:00' },
+      { key: 'global.address',     label: 'Адрес',                    type: 'text', default: 'Санкт-Петербург и Ленинградская область' },
+      { key: 'global.email',       label: 'Email',                    type: 'text', default: 'ahdpuxe@mail.ru' },
+      { key: 'global.telegram',    label: 'Telegram ссылка',          type: 'text', default: 'https://t.me/+79316340087' },
+      { key: 'global.whatsapp',    label: 'WhatsApp ссылка',          type: 'text', default: 'https://wa.me/79316340087' },
+      { key: 'global.reviews_url', label: 'Яндекс.Отзывы — ссылка',  type: 'text', default: 'https://yandex.com/profile/61772118377/?ll=29.608975%2C59.337122&z=7' },
     ]
   },
   {
     id: 'main', title: 'Главная',
     subtitle: 'Тексты главной страницы: уведомление, герой-блок и призыв к действию',
     fields: [
-      { key: 'index.notice',           label: 'Строка-уведомление (шапка)',      type: 'text',     placeholder: 'Сезон начался! Цены растут каждые 3 дня' },
-      { key: 'index.hero.title',       label: 'Hero — заголовок (h1)',           type: 'textarea', placeholder: 'Климатический комфорт под ключ' },
-      { key: 'index.hero.subtitle',    label: 'Hero — подзаголовок',             type: 'textarea', placeholder: 'Продажа, монтаж и обслуживание кондиционеров...' },
-      { key: 'index.hero.btn1',        label: 'Hero — кнопка «Рассчитать»',     type: 'text',     placeholder: 'Получить расчёт бесплатно' },
-      { key: 'index.hero.btn2',        label: 'Hero — кнопка «Посмотреть»',     type: 'text',     placeholder: 'Наши работы' },
-      { key: 'index.about.title',      label: 'О компании — заголовок блока',   type: 'text',     placeholder: 'Работаем только с профессионалами, без посредников' },
-      { key: 'index.about.text1',      label: 'О компании — первый абзац',      type: 'textarea', placeholder: 'С 2011 года мы устанавливаем...' },
-      { key: 'index.about.text2',      label: 'О компании — второй абзац',      type: 'textarea', placeholder: 'Руководитель компании Андрей Утищев...' },
-      { key: 'index.about.b1.title',   label: 'О компании — пункт 1 заголовок', type: 'text',     placeholder: 'Официальный дилер 12+ брендов' },
-      { key: 'index.about.b1.desc',    label: 'О компании — пункт 1 текст',     type: 'text',     placeholder: 'Ballu, Tosot, Euroklimat...' },
-      { key: 'index.about.b2.title',   label: 'О компании — пункт 2 заголовок', type: 'text',     placeholder: 'Договор с фиксированной ценой' },
-      { key: 'index.about.b2.desc',    label: 'О компании — пункт 2 текст',     type: 'text',     placeholder: 'Никаких скрытых доплат...' },
-      { key: 'index.about.b3.title',   label: 'О компании — пункт 3 заголовок', type: 'text',     placeholder: 'Рейтинг 5.0 на Яндексе' },
-      { key: 'index.about.b3.desc',    label: 'О компании — пункт 3 текст',     type: 'text',     placeholder: 'Сотни довольных клиентов...' },
-      { key: 'index.cta.title',        label: 'CTA-блок — заголовок',           type: 'text',     placeholder: 'Готовы обсудить ваш проект?' },
-      { key: 'index.cta.desc',         label: 'CTA-блок — описание',            type: 'textarea', placeholder: 'Получите бесплатный расчёт стоимости...' },
+      { key: 'index.notice',           label: 'Строка-уведомление (шапка)',      type: 'text',     default: 'Сезон начался! Цены растут каждые 3 дня — зафиксируйте свою цену прямо сейчас' },
+      { key: 'index.hero.title',       label: 'Hero — заголовок (h1)',           type: 'textarea', default: 'Климатический комфорт под ключ' },
+      { key: 'index.hero.subtitle',    label: 'Hero — подзаголовок',             type: 'textarea', default: 'Продажа, монтаж и обслуживание кондиционеров, тепловых насосов и систем вентиляции. Работаем без посредников — только профессионалы с опытом от 10 лет.' },
+      { key: 'index.hero.btn1',        label: 'Hero — кнопка «Рассчитать»',     type: 'text',     default: 'Получить расчёт бесплатно' },
+      { key: 'index.hero.btn2',        label: 'Hero — кнопка «Посмотреть»',     type: 'text',     default: 'Наши работы' },
+      { key: 'index.about.title',      label: 'О компании — заголовок блока',   type: 'text',     default: 'Работаем только с профессионалами, без посредников' },
+      { key: 'index.about.text1',      label: 'О компании — первый абзац',      type: 'textarea', default: 'С 2011 года мы устанавливаем климатические системы в Санкт-Петербурге и области. Нет менеджеров и раздутого штата — только инженеры-монтажники с опытом от 10 лет.' },
+      { key: 'index.about.text2',      label: 'О компании — второй абзац',      type: 'textarea', default: 'Руководитель компании Андрей Утищев лично разрабатывает проект и контролирует каждый монтаж. Вы общаетесь напрямую с исполнителем — никаких недопониманий.' },
+      { key: 'index.about.b1.title',   label: 'О компании — пункт 1 заголовок', type: 'text',     default: 'Официальный дилер 12+ брендов' },
+      { key: 'index.about.b1.desc',    label: 'О компании — пункт 1 текст',     type: 'text',     default: 'Ballu, Tosot, Euroklimat и другие. Прямые поставки без переплат дилерам.' },
+      { key: 'index.about.b2.title',   label: 'О компании — пункт 2 заголовок', type: 'text',     default: 'Договор с фиксированной ценой' },
+      { key: 'index.about.b2.desc',    label: 'О компании — пункт 2 текст',     type: 'text',     default: 'Никаких скрытых доплат. Стоимость зафиксирована до начала работ.' },
+      { key: 'index.about.b3.title',   label: 'О компании — пункт 3 заголовок', type: 'text',     default: 'Рейтинг 5.0 на Яндексе' },
+      { key: 'index.about.b3.desc',    label: 'О компании — пункт 3 текст',     type: 'text',     default: 'Сотни довольных клиентов — квартиры, офисы, производства, медицинские центры.' },
+      { key: 'index.cta.title',        label: 'CTA-блок — заголовок',           type: 'text',     default: 'Готовы обсудить ваш проект?' },
+      { key: 'index.cta.desc',         label: 'CTA-блок — описание',            type: 'textarea', default: 'Получите бесплатный расчёт стоимости в течение 15 минут. Работаем 7 дней в неделю, с 9:00 до 21:00.' },
     ]
   },
   {
@@ -48,60 +48,60 @@ const SECTIONS = [
     subtitle: 'Управление акционными карточками: тексты, цены, сроки, изображения',
     promoGroups: [1, 2, 3, 4],
     fields: [
-      { key: 'promo.1.badge',     label: 'Бейдж',            type: 'text',     placeholder: 'Хит сезона',          group: 1 },
-      { key: 'promo.1.title',     label: 'Название акции',   type: 'text',     placeholder: 'Кондиционер под ключ', group: 1 },
-      { key: 'promo.1.desc',      label: 'Описание',         type: 'textarea', placeholder: 'Кондиционер Ballu...', group: 1 },
-      { key: 'promo.1.old_price', label: 'Старая цена',      type: 'text',     placeholder: 'от 22 500 ₽',          group: 1 },
-      { key: 'promo.1.new_price', label: 'Новая цена',       type: 'text',     placeholder: 'от 18 000 ₽',          group: 1 },
-      { key: 'promo.1.deadline',  label: 'Срок (ISO дата)',  type: 'text',     placeholder: '2026-09-01T00:00:00',  group: 1, hint: 'Формат: ГГГГ-ММ-ДДTчч:мм:сс' },
-      { key: 'promo.1.image',     label: 'Изображение',      type: 'image',    bucket: 'cms-images',                group: 1 },
+      { key: 'promo.1.badge',     label: 'Бейдж',            type: 'text',     default: 'Хит сезона',          group: 1 },
+      { key: 'promo.1.title',     label: 'Название акции',   type: 'text',     default: 'Кондиционер под ключ', group: 1 },
+      { key: 'promo.1.desc',      label: 'Описание',         type: 'textarea', default: 'Кондиционер Ballu / Tosot + монтаж + все расходники + гарантия 3 года. Быстрая установка за 1 день.', group: 1 },
+      { key: 'promo.1.old_price', label: 'Старая цена',      type: 'text',     default: 'от 22 500 ₽',          group: 1 },
+      { key: 'promo.1.new_price', label: 'Новая цена',       type: 'text',     default: 'от 18 000 ₽',          group: 1 },
+      { key: 'promo.1.deadline',  label: 'Срок (ISO дата)',  type: 'text',     default: '2026-09-01T00:00:00',  group: 1, hint: 'Формат: ГГГГ-ММ-ДДTчч:мм:сс' },
+      { key: 'promo.1.image',     label: 'Изображение',      type: 'image',    bucket: 'cms-images',            group: 1 },
 
-      { key: 'promo.2.badge',     label: 'Бейдж',            type: 'text',     placeholder: 'Рекомендуем',          group: 2 },
-      { key: 'promo.2.title',     label: 'Название акции',   type: 'text',     placeholder: 'Мульти-сплит',         group: 2 },
-      { key: 'promo.2.desc',      label: 'Описание',         type: 'textarea', placeholder: 'Одна внешняя...',      group: 2 },
-      { key: 'promo.2.old_price', label: 'Старая цена',      type: 'text',     placeholder: 'от 58 000 ₽',          group: 2 },
-      { key: 'promo.2.new_price', label: 'Новая цена',       type: 'text',     placeholder: 'от 49 000 ₽',          group: 2 },
-      { key: 'promo.2.deadline',  label: 'Срок (ISO дата)',  type: 'text',     placeholder: '2026-08-15T00:00:00',  group: 2, hint: 'Формат: ГГГГ-ММ-ДДTчч:мм:сс' },
-      { key: 'promo.2.image',     label: 'Изображение',      type: 'image',    bucket: 'cms-images',                group: 2 },
+      { key: 'promo.2.badge',     label: 'Бейдж',            type: 'text',     default: 'Рекомендуем',          group: 2 },
+      { key: 'promo.2.title',     label: 'Название акции',   type: 'text',     default: 'Мульти-сплит для квартиры', group: 2 },
+      { key: 'promo.2.desc',      label: 'Описание',         type: 'textarea', default: 'Одна внешняя + 2 внутренних блока. Климат в двух комнатах одновременно. Тихая работа от 19 дБ.', group: 2 },
+      { key: 'promo.2.old_price', label: 'Старая цена',      type: 'text',     default: 'от 58 000 ₽',          group: 2 },
+      { key: 'promo.2.new_price', label: 'Новая цена',       type: 'text',     default: 'от 49 000 ₽',          group: 2 },
+      { key: 'promo.2.deadline',  label: 'Срок (ISO дата)',  type: 'text',     default: '2026-08-15T00:00:00',  group: 2, hint: 'Формат: ГГГГ-ММ-ДДTчч:мм:сс' },
+      { key: 'promo.2.image',     label: 'Изображение',      type: 'image',    bucket: 'cms-images',            group: 2 },
 
-      { key: 'promo.3.badge',     label: 'Бейдж',            type: 'text',     placeholder: 'Сезонная',             group: 3 },
-      { key: 'promo.3.title',     label: 'Название акции',   type: 'text',     placeholder: 'ТО кондиционера',      group: 3 },
-      { key: 'promo.3.desc',      label: 'Описание',         type: 'textarea', placeholder: 'Полный сервис...',     group: 3 },
-      { key: 'promo.3.old_price', label: 'Старая цена',      type: 'text',     placeholder: 'от 3 300 ₽',           group: 3 },
-      { key: 'promo.3.new_price', label: 'Новая цена',       type: 'text',     placeholder: 'от 3 000 ₽',           group: 3 },
-      { key: 'promo.3.deadline',  label: 'Срок (ISO дата)',  type: 'text',     placeholder: '2026-10-01T00:00:00',  group: 3, hint: 'Формат: ГГГГ-ММ-ДДTчч:мм:сс' },
-      { key: 'promo.3.image',     label: 'Изображение',      type: 'image',    bucket: 'cms-images',                group: 3 },
+      { key: 'promo.3.badge',     label: 'Бейдж',            type: 'text',     default: 'Сезонная',             group: 3 },
+      { key: 'promo.3.title',     label: 'Название акции',   type: 'text',     default: 'ТО кондиционера',      group: 3 },
+      { key: 'promo.3.desc',      label: 'Описание',         type: 'textarea', default: 'Полный сервис: чистка фильтров, промывка теплообменника, дозаправка фреоном, проверка электроники.', group: 3 },
+      { key: 'promo.3.old_price', label: 'Старая цена',      type: 'text',     default: 'от 3 300 ₽',           group: 3 },
+      { key: 'promo.3.new_price', label: 'Новая цена',       type: 'text',     default: 'от 3 000 ₽',           group: 3 },
+      { key: 'promo.3.deadline',  label: 'Срок (ISO дата)',  type: 'text',     default: '2026-10-01T00:00:00',  group: 3, hint: 'Формат: ГГГГ-ММ-ДДTчч:мм:сс' },
+      { key: 'promo.3.image',     label: 'Изображение',      type: 'image',    bucket: 'cms-images',            group: 3 },
 
-      { key: 'promo.4.badge',     label: 'Бейдж',            type: 'text',     placeholder: 'Комплекс',             group: 4 },
-      { key: 'promo.4.title',     label: 'Название акции',   type: 'text',     placeholder: 'Вентиляция + кондиц.',  group: 4 },
-      { key: 'promo.4.desc',      label: 'Описание',         type: 'textarea', placeholder: 'Комплексный заказ...',  group: 4 },
-      { key: 'promo.4.old_price', label: 'Старая цена',      type: 'text',     placeholder: 'от 79 000 ₽',          group: 4 },
-      { key: 'promo.4.new_price', label: 'Новая цена',       type: 'text',     placeholder: 'от 69 500 ₽',          group: 4 },
-      { key: 'promo.4.deadline',  label: 'Срок (ISO дата)',  type: 'text',     placeholder: '2026-09-15T00:00:00',  group: 4, hint: 'Формат: ГГГГ-ММ-ДДTчч:мм:сс' },
-      { key: 'promo.4.image',     label: 'Изображение',      type: 'image',    bucket: 'cms-images',                group: 4 },
+      { key: 'promo.4.badge',     label: 'Бейдж',            type: 'text',     default: 'Комплекс',             group: 4 },
+      { key: 'promo.4.title',     label: 'Название акции',   type: 'text',     default: 'Вентиляция + кондиционер', group: 4 },
+      { key: 'promo.4.desc',      label: 'Описание',         type: 'textarea', default: 'Комплексный заказ: система вентиляции и кондиционирования в одном проекте. Один монтаж — двойная экономия.', group: 4 },
+      { key: 'promo.4.old_price', label: 'Старая цена',      type: 'text',     default: 'от 79 000 ₽',          group: 4 },
+      { key: 'promo.4.new_price', label: 'Новая цена',       type: 'text',     default: 'от 69 500 ₽',          group: 4 },
+      { key: 'promo.4.deadline',  label: 'Срок (ISO дата)',  type: 'text',     default: '2026-09-15T00:00:00',  group: 4, hint: 'Формат: ГГГГ-ММ-ДДTчч:мм:сс' },
+      { key: 'promo.4.image',     label: 'Изображение',      type: 'image',    bucket: 'cms-images',            group: 4 },
     ]
   },
   {
     id: 'services', title: 'Услуги',
     subtitle: 'Заголовки и подзаголовки страниц услуг',
     fields: [
-      { key: 'services.ac.hero_title',   label: 'Кондиционеры — заголовок страницы',    type: 'text',     placeholder: 'Кондиционеры в Санкт-Петербурге' },
-      { key: 'services.ac.hero_sub',     label: 'Кондиционеры — подзаголовок',          type: 'textarea', placeholder: 'Продажа, монтаж и обслуживание...' },
-      { key: 'services.heat.hero_title', label: 'Тепловые насосы — заголовок страницы', type: 'text',     placeholder: 'Тёплый дом — даже если нет газа' },
-      { key: 'services.heat.hero_sub',   label: 'Тепловые насосы — подзаголовок',       type: 'textarea', placeholder: 'Тепловые насосы воздух-воздух...' },
-      { key: 'services.vent.hero_title', label: 'Вентиляция — заголовок страницы',      type: 'text',     placeholder: 'Вентиляция под ключ в СПб' },
-      { key: 'services.vent.hero_sub',   label: 'Вентиляция — подзаголовок',            type: 'textarea', placeholder: 'Проектирование и монтаж...' },
+      { key: 'services.ac.hero_title',   label: 'Кондиционеры — заголовок страницы',    type: 'text',     default: 'Кондиционеры в Санкт-Петербурге' },
+      { key: 'services.ac.hero_sub',     label: 'Кондиционеры — подзаголовок',          type: 'textarea', default: 'Продажа, монтаж и обслуживание сплит-систем любого типа. Более 1000 моделей в наличии. Монтаж за 1 день — от 18 000 ₽ под ключ.' },
+      { key: 'services.heat.hero_title', label: 'Тепловые насосы — заголовок страницы', type: 'text',     default: 'Тёплый дом — даже если нет газа' },
+      { key: 'services.heat.hero_sub',   label: 'Тепловые насосы — подзаголовок',       type: 'textarea', default: 'Тепловые насосы воздух-воздух для частных домов, офисов и складов. Работают при −30°C, экономят электроэнергию в 4 раза. Монтаж за 1 день.' },
+      { key: 'services.vent.hero_title', label: 'Вентиляция — заголовок страницы',      type: 'text',     default: 'Вентиляция под ключ в Санкт-Петербурге' },
+      { key: 'services.vent.hero_sub',   label: 'Вентиляция — подзаголовок',            type: 'textarea', default: 'Проектирование и монтаж приточно-вытяжных систем с рекуперацией. Квартиры, дома, офисы, рестораны, производство. Бесплатный проект при заказе монтажа.' },
     ]
   },
   {
     id: 'about', title: 'О компании',
     subtitle: 'Информация о компании, данные руководителя и его фото',
     fields: [
-      { key: 'about.hero.title',       label: 'О компании — заголовок страницы', type: 'text',     placeholder: 'О компании Nordic Air' },
-      { key: 'about.hero.subtitle',    label: 'О компании — подзаголовок',       type: 'textarea', placeholder: 'С 2011 года устанавливаем...' },
-      { key: 'about.founder.name',     label: 'Имя руководителя',                type: 'text',     placeholder: 'Андрей Утищев' },
-      { key: 'about.founder.position', label: 'Должность руководителя',          type: 'text',     placeholder: 'Основатель и руководитель' },
-      { key: 'about.founder.bio',      label: 'О руководителе (текст)',          type: 'textarea', placeholder: 'У нас нет менеджеров...' },
+      { key: 'about.hero.title',       label: 'О компании — заголовок страницы', type: 'text',     default: 'О компании Nordic Air' },
+      { key: 'about.hero.subtitle',    label: 'О компании — подзаголовок',       type: 'textarea', default: 'С 2011 года устанавливаем климатические системы в Санкт-Петербурге и области. Только профессионалы, без посредников — результат говорит за нас.' },
+      { key: 'about.founder.name',     label: 'Имя руководителя',                type: 'text',     default: 'Андрей Утищев' },
+      { key: 'about.founder.position', label: 'Должность руководителя',          type: 'text',     default: 'Основатель и руководитель' },
+      { key: 'about.founder.bio',      label: 'О руководителе (текст)',          type: 'textarea', default: 'У нас нет менеджеров и раздутого штата. Только профессионалы по монтажу. Со мной вы будете общаться — именно я разрабатываю проект и контролирую монтаж.' },
       { key: 'about.founder.photo',    label: 'Фото руководителя',               type: 'image',    bucket: 'cms-images' },
     ]
   },
@@ -356,19 +356,21 @@ function renderPromotionsTab(section) {
 }
 
 function renderField(field) {
-  var currentValue = contentCache[field.key] || '';
+  var currentValue = contentCache[field.key] !== undefined && contentCache[field.key] !== ''
+    ? contentCache[field.key]
+    : (field.default || '');
   var inputId = 'field-' + field.key.replace(/\./g, '_');
   if (field.type === 'image') return renderImageField(field, currentValue, inputId);
   var hint = field.hint ? '<div class="field-hint">' + escHtml(field.hint) + '</div>' : '';
   if (field.type === 'textarea') {
     return '<div class="field-item">' +
       '<label class="form-label" for="' + inputId + '">' + escHtml(field.label) + '</label>' +
-      '<textarea class="form-input" id="' + inputId + '" data-key="' + escHtml(field.key) + '" placeholder="' + escHtml(field.placeholder || '') + '" rows="3">' + escHtml(currentValue) + '</textarea>' +
+      '<textarea class="form-input" id="' + inputId + '" data-key="' + escHtml(field.key) + '" rows="3">' + escHtml(currentValue) + '</textarea>' +
       hint + '</div>';
   }
   return '<div class="field-item">' +
     '<label class="form-label" for="' + inputId + '">' + escHtml(field.label) + '</label>' +
-    '<input class="form-input" type="text" id="' + inputId + '" data-key="' + escHtml(field.key) + '" value="' + escHtml(currentValue) + '" placeholder="' + escHtml(field.placeholder || '') + '">' +
+    '<input class="form-input" type="text" id="' + inputId + '" data-key="' + escHtml(field.key) + '" value="' + escHtml(currentValue) + '">' +
     hint + '</div>';
 }
 
