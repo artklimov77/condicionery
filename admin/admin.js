@@ -1219,6 +1219,7 @@ function renderBuilderTab() {
 function builderToggleBlock(checkbox, blockId) {
   var blockEl = checkbox.closest ? checkbox.closest('.builder-block') : null;
   if (blockEl) blockEl.classList.toggle('builder-block--hidden', !checkbox.checked);
+  saveBlockConfig();
 }
 
 function builderDragStart(event) {
@@ -1260,6 +1261,7 @@ function builderDragEnd(event) {
   event.currentTarget.classList.remove('builder-block--dragging');
   document.querySelectorAll('.builder-block--over').forEach(function(el) { el.classList.remove('builder-block--over'); });
   builderDragSrc = null;
+  saveBlockConfig();
 }
 
 // ---- Builder: block editor ----
@@ -1426,9 +1428,11 @@ async function addBlockFromLibrary(templateId) {
     // Append to block config
     var savedConfig = [];
     try { var r = contentCache[page.key]; if (r) savedConfig = JSON.parse(r) || []; } catch(e) {}
-    var nextOrder = savedConfig.length > 0
-      ? Math.max.apply(null, savedConfig.map(function(b) { return b.order !== undefined ? b.order : 0; })) + 1
-      : page.blocks.length;
+    // If no config saved yet, initialize with all static blocks so they are tracked
+    if (savedConfig.length === 0) {
+      page.blocks.forEach(function(b, i) { savedConfig.push({ id: b.id, visible: true, order: i }); });
+    }
+    var nextOrder = Math.max.apply(null, savedConfig.map(function(b) { return b.order !== undefined ? b.order : 0; })) + 1;
     savedConfig.push({ id: blockId, visible: true, order: nextOrder });
     var configJson = JSON.stringify(savedConfig);
     await upsertRows([{ key: page.key, value: configJson, type: 'json' }]);
@@ -1474,9 +1478,10 @@ async function deleteDynamicBlock(blockId) {
 function refreshBuilderPreview() {
   var iframe = document.getElementById('builder-iframe');
   if (!iframe) return;
-  var src = iframe.src;
-  iframe.src = '';
-  setTimeout(function() { iframe.src = src; }, 50);
+  var page = BUILDER_PAGES.find(function(p) { return p.id === builderActivePage; }) || BUILDER_PAGES[0];
+  var baseUrl = page.url || ('../' + page.id + '.html');
+  var sep = baseUrl.indexOf('?') !== -1 ? '&' : '?';
+  iframe.src = baseUrl + sep + '_t=' + Date.now();
 }
 
 // ---- Builder: save block config ----

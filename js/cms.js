@@ -33,6 +33,7 @@
       const response = await fetch(
         `${supabaseUrl}/rest/v1/content?select=key,value,type`,
         {
+          cache: 'no-store',
           headers: {
             'apikey': supabaseKey,
             'Authorization': `Bearer ${supabaseKey}`,
