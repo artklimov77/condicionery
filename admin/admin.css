@@ -1086,3 +1086,328 @@ textarea.form-input {
 .builder-toggle input:checked + .builder-toggle-track::after {
   transform: translateX(18px);
 }
+
+/* ===== BUILDER SPLIT LAYOUT ===== */
+
+.content-area.builder-active {
+  padding: 0 !important;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.builder-layout {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  position: relative;
+}
+
+/* Left panel */
+.builder-left {
+  width: 38%;
+  min-width: 280px;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  background: var(--card-bg);
+  min-height: 0;
+  flex-shrink: 0;
+}
+
+.builder-left-top {
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.builder-left-top .builder-page-tabs {
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.builder-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #fafbfc;
+}
+
+.btn-builder-lib {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: background 0.15s;
+  flex: 1;
+}
+
+.btn-builder-lib:hover {
+  background: var(--blue-hover);
+}
+
+.btn-builder-refresh {
+  flex-shrink: 0;
+}
+
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.btn-icon:hover {
+  border-color: #94a3b8;
+  background: #f1f5f9;
+  color: var(--text-primary);
+}
+
+.btn-icon.builder-delete-btn:hover {
+  border-color: var(--red);
+  background: var(--red-light);
+  color: var(--red);
+}
+
+.btn-icon.builder-edit-btn {
+  border-color: #bfdbfe;
+  background: var(--blue-light);
+  color: var(--blue);
+}
+
+.btn-icon.builder-edit-btn:hover {
+  background: #dbeafe;
+}
+
+.builder-left-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  min-height: 0;
+}
+
+.builder-left-footer {
+  flex-shrink: 0;
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  background: #fafbfc;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Block action buttons */
+.builder-block-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+
+.builder-block-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #fef3c7;
+  color: #d97706;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+  letter-spacing: 0.04em;
+}
+
+/* Right panel (iframe) */
+.builder-right {
+  flex: 1;
+  position: relative;
+  background: #e2e8f0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.builder-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  background: #fff;
+}
+
+/* Block editor overlay */
+.builder-editor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 360px;
+  height: 100%;
+  background: var(--card-bg);
+  border-left: 1px solid var(--border);
+  box-shadow: -6px 0 24px rgba(0,0,0,0.12);
+  display: none;
+  flex-direction: column;
+  z-index: 100;
+}
+
+.builder-editor-header {
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  background: #fafbfc;
+}
+
+.builder-editor-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.builder-editor-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.builder-editor-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.builder-editor-empty {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  text-align: center;
+}
+
+.builder-editor-footer {
+  flex-shrink: 0;
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  background: #fafbfc;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Library modal */
+.builder-lib-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9990;
+  padding: 24px;
+}
+
+.builder-lib-modal {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.builder-lib-header {
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.builder-lib-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.builder-lib-desc {
+  padding: 12px 20px 4px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.builder-lib-grid {
+  padding: 16px 20px 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.builder-lib-card {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #fafbfc;
+  text-align: left;
+}
+
+.builder-lib-card:hover {
+  border-color: var(--blue);
+  background: var(--blue-light);
+}
+
+.builder-lib-card-icon {
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+
+.builder-lib-card-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.builder-lib-card-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}

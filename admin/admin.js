@@ -607,9 +607,11 @@ function switchTab(tabId) {
 function renderTab(tabId) {
   var contentArea = document.getElementById('content-area');
   if (tabId === 'builder') {
+    contentArea.classList.add('builder-active');
     contentArea.innerHTML = renderBuilderTab();
     return;
   }
+  contentArea.classList.remove('builder-active');
   var section = SECTIONS.find(function (s) { return s.id === tabId; });
   if (!section) return;
   contentArea.innerHTML = tabId === 'promotions'
@@ -880,39 +882,176 @@ function escHtml(str) {
 
 var BUILDER_PAGES = [
   {
-    id: 'index',
-    label: 'Главная',
-    key: 'blocks.index',
+    id: 'index', label: 'Главная', url: '../index.html', key: 'blocks.index',
     blocks: [
-      { id: 'hero',             label: 'Hero-баннер',         desc: 'Главный экран с заголовком и кнопками' },
-      { id: 'stats',            label: 'Статистика',          desc: '15+ лет, 1000+ монтажей, рейтинг, гарантия' },
-      { id: 'clients',          label: 'Нам доверяют',        desc: 'Типы клиентов — бизнес-центры, квартиры...' },
-      { id: 'services',         label: 'Наши услуги',         desc: 'Три карточки: кондиционеры, насосы, вентиляция' },
-      { id: 'quiz',             label: 'Квиз-калькулятор',    desc: 'Подбор системы за 3 шага' },
-      { id: 'about-brief',      label: 'О компании (блок)',   desc: 'Кратко о компании + фото' },
-      { id: 'why',              label: 'Почему мы',           desc: '6 причин выбрать Nordic Air' },
-      { id: 'portfolio-preview',label: 'Примеры работ',       desc: 'Сетка с фото проектов' },
-      { id: 'telegram',         label: 'Telegram-канал',      desc: 'Виджет Telegram-канала' },
-      { id: 'steps',            label: 'Как работаем',        desc: '4 шага от заявки до монтажа' },
-      { id: 'reviews',          label: 'Отзывы',              desc: 'Отзывы клиентов с Яндекса' },
-      { id: 'faq',              label: 'FAQ',                  desc: 'Часто задаваемые вопросы' },
-      { id: 'zones',            label: 'Зоны обслуживания',   desc: 'Районы СПб и Ленобласти' },
-      { id: 'cta',              label: 'Призыв к действию',   desc: 'Финальный CTA-баннер' },
+      { id: 'hero',              label: 'Hero-баннер',       desc: 'Главный экран с заголовком и кнопками',
+        fieldKeys: ['index.hero.eyebrow','index.hero.title','index.hero.subtitle','index.hero.btn1','index.hero.btn2'] },
+      { id: 'stats',             label: 'Статистика',        desc: '15+ лет, 1000+ монтажей, рейтинг', fieldKeys: [] },
+      { id: 'clients',           label: 'Нам доверяют',      desc: 'Типы клиентов', fieldKeys: [] },
+      { id: 'services',          label: 'Наши услуги',       desc: 'Три карточки: кондиционеры, насосы, вентиляция',
+        fieldKeys: ['index.services.label','index.services.title','index.services.desc'] },
+      { id: 'quiz',              label: 'Квиз-калькулятор',  desc: 'Подбор системы за 3 шага', fieldKeys: [] },
+      { id: 'about-brief',       label: 'О компании (блок)', desc: 'Кратко о компании + фото',
+        fieldKeys: ['index.about.title','index.about.text1','index.about.text2'] },
+      { id: 'why',               label: 'Почему мы',         desc: '6 причин выбрать Nordic Air',
+        fieldKeys: ['index.why.title','index.why.desc'] },
+      { id: 'portfolio-preview', label: 'Примеры работ',     desc: 'Сетка с фото проектов', fieldKeys: [] },
+      { id: 'telegram',          label: 'Telegram-канал',    desc: 'Виджет Telegram-канала', fieldKeys: [] },
+      { id: 'steps',             label: 'Как работаем',      desc: '4 шага от заявки до монтажа',
+        fieldKeys: ['index.steps.title','index.steps.desc'] },
+      { id: 'reviews',           label: 'Отзывы',            desc: 'Отзывы клиентов с Яндекса',
+        fieldKeys: ['index.reviews.title','index.reviews.desc'] },
+      { id: 'faq',               label: 'FAQ',               desc: 'Часто задаваемые вопросы',
+        fieldKeys: ['index.faq.title','index.faq.desc'] },
+      { id: 'zones',             label: 'Зоны обслуживания', desc: 'Районы СПб и Ленобласти', fieldKeys: [] },
+      { id: 'cta',               label: 'Призыв к действию', desc: 'Финальный CTA-баннер',
+        fieldKeys: ['index.cta.title','index.cta.desc'] },
+    ]
+  },
+  {
+    id: 'conditioners', label: 'Кондиционеры', url: '../conditioners.html', key: 'blocks.conditioners',
+    blocks: [
+      { id: 'hero',    label: 'Hero-баннер',       desc: 'Заголовок и теги',
+        fieldKeys: ['services.ac.hero_title','services.ac.hero_sub'] },
+      { id: 'types',   label: 'Виды кондиционеров',desc: '6 карточек типов',
+        fieldKeys: ['ac.types.title','ac.types.desc'] },
+      { id: 'pricing', label: 'Прайс-лист',        desc: 'Стоимость монтажа',
+        fieldKeys: ['ac.price.title','ac.price.desc','ac.price.note'] },
+      { id: 'brands',  label: 'Бренды',            desc: 'Ведущие бренды',
+        fieldKeys: ['ac.brands.title','ac.brands.desc'] },
+      { id: 'process', label: 'Процесс монтажа',   desc: '4 шага монтажа',
+        fieldKeys: ['ac.process.title','ac.process.desc'] },
+      { id: 'why',     label: 'Почему Nordic Air', desc: '3 преимущества',
+        fieldKeys: ['ac.why.title'] },
+      { id: 'gallery', label: 'Галерея работ',     desc: 'Фото выполненных работ', fieldKeys: [] },
+      { id: 'cta',     label: 'Призыв к действию', desc: 'CTA-баннер',
+        fieldKeys: ['ac.cta.title','ac.cta.desc'] },
+    ]
+  },
+  {
+    id: 'heat-pumps', label: 'Тепловые насосы', url: '../heat-pumps.html', key: 'blocks.heat-pumps',
+    blocks: [
+      { id: 'hero',       label: 'Hero-баннер',         desc: 'Заголовок и теги',
+        fieldKeys: ['services.heat.hero_title','services.heat.hero_sub'] },
+      { id: 'what',       label: 'Что такое насос',     desc: 'Описание + инфо-блоки',
+        fieldKeys: ['heat.what.title','heat.what.p1','heat.what.p2'] },
+      { id: 'comparison', label: 'Сравнение',           desc: 'Сравнение с другими типами',
+        fieldKeys: ['heat.cmp.title','heat.cmp.desc'] },
+      { id: 'models',     label: 'Модели',              desc: 'Каталог моделей',
+        fieldKeys: ['heat.models.title','heat.models.desc'] },
+      { id: 'advantages', label: 'Преимущества',        desc: '6 преимуществ',
+        fieldKeys: ['heat.adv.title','heat.adv.desc'] },
+      { id: 'gallery',    label: 'Галерея работ',       desc: 'Фото выполненных работ', fieldKeys: [] },
+      { id: 'cta',        label: 'Призыв к действию',   desc: 'CTA-баннер',
+        fieldKeys: ['heat.cta.title','heat.cta.desc'] },
+    ]
+  },
+  {
+    id: 'ventilation', label: 'Вентиляция', url: '../ventilation.html', key: 'blocks.ventilation',
+    blocks: [
+      { id: 'hero',    label: 'Hero-баннер',       desc: 'Заголовок и теги',
+        fieldKeys: ['services.vent.hero_title','services.vent.hero_sub'] },
+      { id: 'types',   label: 'Виды вентиляции',  desc: '6 карточек типов',
+        fieldKeys: ['vent.types.title','vent.types.desc'] },
+      { id: 'pricing', label: 'Тарифы',            desc: '3 пакета услуг',
+        fieldKeys: ['vent.tiers.title','vent.tiers.desc'] },
+      { id: 'design',  label: 'Проектирование',    desc: 'Стоимость проекта',
+        fieldKeys: ['vent.design.title','vent.design.desc'] },
+      { id: 'photo',   label: 'Фото-блок',         desc: 'Фото + описание', fieldKeys: [] },
+      { id: 'gallery', label: 'Галерея работ',     desc: 'Фото выполненных работ', fieldKeys: [] },
+      { id: 'cta',     label: 'Призыв к действию', desc: 'CTA-баннер',
+        fieldKeys: ['vent.cta.title','vent.cta.desc'] },
+    ]
+  },
+  {
+    id: 'about', label: 'О компании', url: '../about.html', key: 'blocks.about',
+    blocks: [
+      { id: 'hero',    label: 'Hero-баннер',       desc: 'Заголовок страницы',
+        fieldKeys: ['about.hero.title','about.hero.subtitle'] },
+      { id: 'stats',   label: 'Статистика',        desc: '4 ключевых показателя', fieldKeys: [] },
+      { id: 'story',   label: 'Наша история',      desc: 'История компании',
+        fieldKeys: ['about.story.title','about.story.p1','about.story.p2','about.story.p3'] },
+      { id: 'values',  label: 'Наши принципы',     desc: '4 ценности компании',
+        fieldKeys: ['about.values.title','about.values.desc'] },
+      { id: 'brands',  label: 'Партнёры',          desc: 'Официальные бренды', fieldKeys: [] },
+      { id: 'gallery', label: 'Галерея проектов',  desc: 'Примеры работ', fieldKeys: [] },
+      { id: 'cta',     label: 'Призыв к действию', desc: 'CTA-баннер',
+        fieldKeys: ['about.cta.title','about.cta.desc'] },
     ]
   }
 ];
 
 TAB_META['builder'] = {
   title: 'Конструктор страниц',
-  subtitle: 'Управляйте блоками: включайте, отключайте и меняйте их порядок'
+  subtitle: 'Управляйте блоками: включайте, перетаскивайте, редактируйте тексты и добавляйте новые'
 };
 
 var builderActivePage = 'index';
 var builderDragSrc = null;
+var builderActiveEditor = null;
+var builderActiveEditorDynamic = null;
+
+// Template definitions for the block library
+var TEMPLATE_LABELS = { cta:'CTA-баннер', gallery:'Галерея фото', 'text-image':'Текст + фото', stats:'Статистика', faq:'FAQ', reviews:'Отзывы' };
+var TEMPLATE_DESCS  = { cta:'Заголовок, текст и кнопка', gallery:'Сетка из фотографий', 'text-image':'Блок с текстом и изображением', stats:'Ряд из 4 цифр с подписями', faq:'Вопросы и ответы', reviews:'Карточки отзывов' };
+var TEMPLATE_FIELDS = {
+  cta: [
+    { key:'title',    label:'Заголовок',      type:'text',     default:'Заголовок CTA' },
+    { key:'desc',     label:'Описание',        type:'textarea', default:'Описание призыва к действию' },
+    { key:'btn_text', label:'Текст кнопки',   type:'text',     default:'Оставить заявку' },
+    { key:'btn_href', label:'Ссылка кнопки',  type:'text',     default:'contacts.html' },
+  ],
+  gallery: [
+    { key:'title',  label:'Заголовок',  type:'text', default:'Галерея работ' },
+    { key:'photo1', label:'Фото 1 URL', type:'text', default:'' },
+    { key:'photo2', label:'Фото 2 URL', type:'text', default:'' },
+    { key:'photo3', label:'Фото 3 URL', type:'text', default:'' },
+    { key:'photo4', label:'Фото 4 URL', type:'text', default:'' },
+    { key:'photo5', label:'Фото 5 URL', type:'text', default:'' },
+    { key:'photo6', label:'Фото 6 URL', type:'text', default:'' },
+  ],
+  'text-image': [
+    { key:'title',    label:'Заголовок',      type:'text',     default:'Заголовок блока' },
+    { key:'text',     label:'Текст',          type:'textarea', default:'Текст описания...' },
+    { key:'image',    label:'Изображение URL',type:'text',     default:'' },
+    { key:'btn_text', label:'Кнопка',         type:'text',     default:'Подробнее' },
+    { key:'btn_href', label:'Ссылка кнопки',  type:'text',     default:'contacts.html' },
+  ],
+  stats: [
+    { key:'stat1_num',   label:'Число 1',   type:'text', default:'1000+' },
+    { key:'stat1_label', label:'Подпись 1', type:'text', default:'монтажей' },
+    { key:'stat2_num',   label:'Число 2',   type:'text', default:'15+' },
+    { key:'stat2_label', label:'Подпись 2', type:'text', default:'лет на рынке' },
+    { key:'stat3_num',   label:'Число 3',   type:'text', default:'5.0' },
+    { key:'stat3_label', label:'Подпись 3', type:'text', default:'рейтинг' },
+    { key:'stat4_num',   label:'Число 4',   type:'text', default:'12+' },
+    { key:'stat4_label', label:'Подпись 4', type:'text', default:'брендов' },
+  ],
+  faq: [
+    { key:'title', label:'Заголовок', type:'text',     default:'Часто задаваемые вопросы' },
+    { key:'q1',    label:'Вопрос 1',  type:'text',     default:'' },
+    { key:'a1',    label:'Ответ 1',   type:'textarea', default:'' },
+    { key:'q2',    label:'Вопрос 2',  type:'text',     default:'' },
+    { key:'a2',    label:'Ответ 2',   type:'textarea', default:'' },
+    { key:'q3',    label:'Вопрос 3',  type:'text',     default:'' },
+    { key:'a3',    label:'Ответ 3',   type:'textarea', default:'' },
+  ],
+  reviews: [
+    { key:'title',   label:'Заголовок', type:'text',     default:'Отзывы клиентов' },
+    { key:'r1_text', label:'Отзыв 1',   type:'textarea', default:'' },
+    { key:'r1_name', label:'Имя 1',     type:'text',     default:'' },
+    { key:'r2_text', label:'Отзыв 2',   type:'textarea', default:'' },
+    { key:'r2_name', label:'Имя 2',     type:'text',     default:'' },
+    { key:'r3_text', label:'Отзыв 3',   type:'textarea', default:'' },
+    { key:'r3_name', label:'Имя 3',     type:'text',     default:'' },
+  ],
+};
 
 function selectBuilderPage(pageId) {
   builderActivePage = pageId;
-  renderTab('builder');
+  var contentArea = document.getElementById('content-area');
+  contentArea.classList.add('builder-active');
+  contentArea.innerHTML = renderBuilderTab();
 }
 
 function renderBuilderTab() {
@@ -926,23 +1065,56 @@ function renderBuilderTab() {
   var blocks = page.blocks.map(function(block, index) {
     var saved = savedConfig && savedConfig.find(function(c) { return c.id === block.id; });
     return {
-      id: block.id,
-      label: block.label,
-      desc: block.desc,
+      id: block.id, label: block.label, desc: block.desc,
+      fieldKeys: block.fieldKeys || [], dynamic: false,
       visible: saved ? saved.visible !== false : true,
       order: saved ? saved.order : index
     };
   });
+
+  // Load dynamic blocks from contentCache
+  var dynPrefix = 'dblock.' + page.id + '.';
+  Object.keys(contentCache).forEach(function(key) {
+    if (key.indexOf(dynPrefix) !== 0) return;
+    var blockId = key.substring(dynPrefix.length);
+    if (blocks.find(function(b) { return b.id === blockId; })) return;
+    var dynData = null;
+    try { dynData = JSON.parse(contentCache[key]); } catch(e) {}
+    var saved = savedConfig && savedConfig.find(function(c) { return c.id === blockId; });
+    blocks.push({
+      id: blockId,
+      label: (dynData && dynData._label) || TEMPLATE_LABELS[dynData && dynData._template] || blockId,
+      desc: (dynData && dynData._desc) || TEMPLATE_DESCS[dynData && dynData._template] || 'Динамический блок',
+      fieldKeys: [], dynamic: true,
+      template: dynData && dynData._template,
+      visible: saved ? saved.visible !== false : true,
+      order: saved ? saved.order : blocks.length
+    });
+  });
+
   blocks.sort(function(a, b) { return a.order - b.order; });
 
+  // Page tabs
   var pageTabsHTML = BUILDER_PAGES.map(function(p) {
     return '<button class="builder-page-tab' + (p.id === builderActivePage ? ' active' : '') + '" ' +
       'onclick="selectBuilderPage(\'' + p.id + '\')">' + escHtml(p.label) + '</button>';
   }).join('');
 
+  // Block rows
   var blocksHTML = blocks.map(function(block) {
     var checkedAttr = block.visible ? ' checked' : '';
     var hiddenClass = block.visible ? '' : ' builder-block--hidden';
+    var badge = block.dynamic ? '<span class="builder-block-badge">NEW</span>' : '';
+    var editBtn = (block.fieldKeys.length > 0 || block.dynamic)
+      ? '<button class="btn-icon builder-edit-btn" onclick="openBlockEditor(\'' + escHtml(block.id) + '\')" title="Редактировать контент">' +
+        '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>' +
+        '</button>'
+      : '';
+    var delBtn = block.dynamic
+      ? '<button class="btn-icon builder-delete-btn" onclick="deleteDynamicBlock(\'' + escHtml(block.id) + '\')" title="Удалить блок">' +
+        '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6m4-6v6"/></svg>' +
+        '</button>'
+      : '';
     return '<div class="builder-block' + hiddenClass + '" draggable="true" data-block-id="' + escHtml(block.id) + '" ' +
       'ondragstart="builderDragStart(event)" ondragover="builderDragOver(event)" ' +
       'ondragleave="builderDragLeave(event)" ondrop="builderDrop(event)" ondragend="builderDragEnd(event)">' +
@@ -950,9 +1122,10 @@ function renderBuilderTab() {
       '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>' +
       '</div>' +
       '<div class="builder-block-body">' +
-      '<div class="builder-block-name">' + escHtml(block.label) + '</div>' +
+      '<div class="builder-block-name">' + escHtml(block.label) + badge + '</div>' +
       '<div class="builder-block-desc">' + escHtml(block.desc) + '</div>' +
       '</div>' +
+      '<div class="builder-block-actions">' + editBtn + delBtn + '</div>' +
       '<label class="builder-toggle">' +
       '<input type="checkbox"' + checkedAttr + ' onchange="builderToggleBlock(this, \'' + escHtml(block.id) + '\')">' +
       '<span class="builder-toggle-track"></span>' +
@@ -960,25 +1133,88 @@ function renderBuilderTab() {
       '</div>';
   }).join('');
 
-  return '<div class="section-panel">' +
-    '<div class="panel-header"><div>' +
-    '<div class="panel-title">Конструктор страниц</div>' +
-    '<div class="text-muted mt-4">Перетаскивайте блоки чтобы изменить их порядок. Переключатель скрывает/показывает блок на сайте.</div>' +
-    '</div></div>' +
-    '<div class="builder-page-tabs">' + pageTabsHTML + '</div>' +
-    '<div class="panel-body">' +
-    '<div class="builder-info">' +
-    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
-    ' Перетащите блоки для изменения порядка. Выключенный блок исчезнет со страницы сайта.' +
+  // Library modal: 6 template cards
+  var libTemplates = [
+    { id:'cta',        icon:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8l-2 4h12z"/></svg>' },
+    { id:'gallery',    icon:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>' },
+    { id:'text-image', icon:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="8" height="18" rx="1"/><line x1="14" y1="8" x2="21" y2="8"/><line x1="14" y1="12" x2="21" y2="12"/><line x1="14" y1="16" x2="21" y2="16"/></svg>' },
+    { id:'stats',      icon:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>' },
+    { id:'faq',        icon:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>' },
+    { id:'reviews',    icon:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>' },
+  ];
+  var libGridHTML = libTemplates.map(function(t) {
+    return '<div class="builder-lib-card" onclick="addBlockFromLibrary(\'' + t.id + '\')">' +
+      '<div class="builder-lib-card-icon">' + t.icon + '</div>' +
+      '<div class="builder-lib-card-label">' + escHtml(TEMPLATE_LABELS[t.id] || t.id) + '</div>' +
+      '<div class="builder-lib-card-desc">' + escHtml(TEMPLATE_DESCS[t.id] || '') + '</div>' +
+      '</div>';
+  }).join('');
+
+  var iframeSrc = page.url || ('../' + page.id + '.html');
+
+  return '<div class="builder-layout">' +
+    // LEFT PANEL
+    '<div class="builder-left">' +
+      '<div class="builder-left-top">' +
+        '<div class="builder-page-tabs">' + pageTabsHTML + '</div>' +
+        '<div class="builder-toolbar">' +
+          '<button class="btn-builder-lib" onclick="showBlockLibrary()">' +
+            '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>' +
+            ' Добавить блок</button>' +
+          '<button class="btn-icon btn-builder-refresh" onclick="refreshBuilderPreview()" title="Обновить превью страницы">' +
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>' +
+          '</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="builder-left-scroll">' +
+        '<div class="builder-info">' +
+          '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
+          ' Перетащите блоки для изменения порядка. Кнопка карандаша — редактировать тексты.' +
+        '</div>' +
+        '<div class="builder-blocks" id="builder-blocks">' + blocksHTML + '</div>' +
+      '</div>' +
+      '<div class="builder-left-footer">' +
+        '<span class="save-status" id="save-status-builder"></span>' +
+        '<button class="btn btn-save" onclick="saveBlockConfig()">' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>' +
+          ' Сохранить</button>' +
+      '</div>' +
     '</div>' +
-    '<div class="builder-blocks" id="builder-blocks">' + blocksHTML + '</div>' +
+    // RIGHT PANEL (iframe preview)
+    '<div class="builder-right" id="builder-right">' +
+      '<iframe class="builder-iframe" id="builder-iframe" src="' + escHtml(iframeSrc) + '" title="Превью страницы"></iframe>' +
+      // Block editor overlay
+      '<div class="builder-editor" id="builder-editor">' +
+        '<div class="builder-editor-header">' +
+          '<div class="builder-editor-title" id="builder-editor-title">Редактировать блок</div>' +
+          '<button class="btn-icon" onclick="closeBlockEditor()" title="Закрыть">' +
+            '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+          '</button>' +
+        '</div>' +
+        '<div class="builder-editor-body" id="builder-editor-body"></div>' +
+        '<div class="builder-editor-footer">' +
+          '<button class="btn btn-sm" style="background:var(--content-bg);border:1.5px solid var(--border);color:var(--text-secondary);" onclick="closeBlockEditor()">Отмена</button>' +
+          '<button class="btn btn-save btn-sm" id="builder-editor-save" onclick="saveBlockEditor()">Сохранить</button>' +
+        '</div>' +
+      '</div>' +
     '</div>' +
-    '<div class="panel-footer">' +
-    '<span class="save-status" id="save-status-builder"></span>' +
-    '<button class="btn btn-save" onclick="saveBlockConfig()">' +
-    '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>' +
-    ' Сохранить конструктор</button></div></div>';
+    // Library modal (fixed overlay)
+    '<div class="builder-lib-overlay" id="builder-library">' +
+      '<div class="builder-lib-modal">' +
+        '<div class="builder-lib-header">' +
+          '<div class="builder-lib-title">Библиотека блоков</div>' +
+          '<button class="btn-icon" onclick="closeBlockLibrary()">' +
+            '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+          '</button>' +
+        '</div>' +
+        '<p class="builder-lib-desc">Выберите шаблон — он добавится в список блоков. Затем заполните его содержимое.</p>' +
+        '<div class="builder-lib-grid">' + libGridHTML + '</div>' +
+      '</div>' +
+    '</div>' +
+    '</div>';
 }
+
+// ---- Builder: drag and drop ----
 
 function builderToggleBlock(checkbox, blockId) {
   var blockEl = checkbox.closest ? checkbox.closest('.builder-block') : null;
@@ -1009,12 +1245,10 @@ function builderDrop(event) {
   var target = event.currentTarget;
   target.classList.remove('builder-block--over');
   if (!builderDragSrc || builderDragSrc === target) return;
-
   var list = document.getElementById('builder-blocks');
-  var blocks = Array.from(list.querySelectorAll('.builder-block'));
-  var srcIdx = blocks.indexOf(builderDragSrc);
-  var tgtIdx = blocks.indexOf(target);
-
+  var allBlocks = Array.from(list.querySelectorAll('.builder-block'));
+  var srcIdx = allBlocks.indexOf(builderDragSrc);
+  var tgtIdx = allBlocks.indexOf(target);
   if (srcIdx < tgtIdx) {
     list.insertBefore(builderDragSrc, target.nextSibling);
   } else {
@@ -1024,20 +1258,237 @@ function builderDrop(event) {
 
 function builderDragEnd(event) {
   event.currentTarget.classList.remove('builder-block--dragging');
-  document.querySelectorAll('.builder-block--over').forEach(function(el) {
-    el.classList.remove('builder-block--over');
-  });
+  document.querySelectorAll('.builder-block--over').forEach(function(el) { el.classList.remove('builder-block--over'); });
   builderDragSrc = null;
 }
 
+// ---- Builder: block editor ----
+
+function getFieldDef(key) {
+  for (var i = 0; i < SECTIONS.length; i++) {
+    for (var j = 0; j < SECTIONS[i].fields.length; j++) {
+      if (SECTIONS[i].fields[j].key === key) return SECTIONS[i].fields[j];
+    }
+  }
+  return null;
+}
+
+function buildEditorFields(fields, prefix, dynData) {
+  if (!fields || fields.length === 0) {
+    return '<div class="builder-editor-empty">Для этого блока нет редактируемых полей в конструкторе. Используйте раздел в меню слева.</div>';
+  }
+  return fields.map(function(f) {
+    var value = dynData ? (dynData[f.key] !== undefined ? dynData[f.key] : (f.default || '')) : '';
+    if (!dynData) {
+      var v = contentCache[f.key];
+      value = (v !== undefined && v !== '') ? v : (f.default || '');
+    }
+    var inputId = prefix + f.key.replace(/[.\-]/g, '_');
+    if (f.type === 'textarea') {
+      return '<div class="builder-editor-field">' +
+        '<label class="form-label">' + escHtml(f.label) + '</label>' +
+        '<textarea class="form-input" id="' + inputId + '" data-key="' + escHtml(f.key) + '" rows="3">' + escHtml(value) + '</textarea>' +
+        '</div>';
+    }
+    return '<div class="builder-editor-field">' +
+      '<label class="form-label">' + escHtml(f.label) + '</label>' +
+      '<input class="form-input" type="text" id="' + inputId + '" data-key="' + escHtml(f.key) + '" value="' + escHtml(value) + '">' +
+      '</div>';
+  }).join('');
+}
+
+function openBlockEditor(blockId) {
+  var page = BUILDER_PAGES.find(function(p) { return p.id === builderActivePage; });
+  if (!page) return;
+
+  builderActiveEditor = blockId;
+
+  var editorEl = document.getElementById('builder-editor');
+  var titleEl = document.getElementById('builder-editor-title');
+  var bodyEl = document.getElementById('builder-editor-body');
+
+  // Static block
+  var block = page.blocks.find(function(b) { return b.id === blockId; });
+  if (block) {
+    builderActiveEditorDynamic = null;
+    if (titleEl) titleEl.textContent = block.label;
+    var fieldDefs = (block.fieldKeys || []).map(function(key) {
+      var def = getFieldDef(key);
+      return def || { key: key, label: key, type: 'text', default: '' };
+    });
+    if (bodyEl) bodyEl.innerHTML = buildEditorFields(fieldDefs, 'be_', null);
+    if (editorEl) editorEl.style.display = 'flex';
+    return;
+  }
+
+  // Dynamic block
+  var dynKey = 'dblock.' + builderActivePage + '.' + blockId;
+  var dynData = null;
+  try { dynData = JSON.parse(contentCache[dynKey] || '{}'); } catch(e) { dynData = {}; }
+  var templateId = (dynData && dynData._template) || '';
+  builderActiveEditorDynamic = { blockId: blockId, templateId: templateId };
+
+  var label = TEMPLATE_LABELS[templateId] || blockId;
+  if (titleEl) titleEl.textContent = label;
+  var tFields = TEMPLATE_FIELDS[templateId] || [];
+  if (bodyEl) bodyEl.innerHTML = buildEditorFields(tFields, 'be_dyn_', dynData);
+  if (editorEl) editorEl.style.display = 'flex';
+}
+
+function closeBlockEditor() {
+  var editorEl = document.getElementById('builder-editor');
+  if (editorEl) editorEl.style.display = 'none';
+  builderActiveEditor = null;
+  builderActiveEditorDynamic = null;
+}
+
+async function saveBlockEditor() {
+  if (!builderActiveEditor) return;
+
+  var saveBtn = document.getElementById('builder-editor-save');
+  if (saveBtn) { saveBtn.disabled = true; saveBtn.textContent = 'Сохраняю...'; }
+
+  try {
+    if (builderActiveEditorDynamic) {
+      // Dynamic block
+      var blockId = builderActiveEditorDynamic.blockId;
+      var templateId = builderActiveEditorDynamic.templateId;
+      var dynKey = 'dblock.' + builderActivePage + '.' + blockId;
+      var dynData = {};
+      try { dynData = JSON.parse(contentCache[dynKey] || '{}'); } catch(e) {}
+      var tFields = TEMPLATE_FIELDS[templateId] || [];
+      tFields.forEach(function(f) {
+        var el = document.getElementById('be_dyn_' + f.key.replace(/[.\-]/g, '_'));
+        if (el) dynData[f.key] = el.value || '';
+      });
+      var dynJson = JSON.stringify(dynData);
+      await upsertRows([{ key: dynKey, value: dynJson, type: 'json' }]);
+      contentCache[dynKey] = dynJson;
+    } else {
+      // Static block
+      var page = BUILDER_PAGES.find(function(p) { return p.id === builderActivePage; });
+      if (!page) return;
+      var block = page.blocks.find(function(b) { return b.id === builderActiveEditor; });
+      if (!block || !block.fieldKeys || !block.fieldKeys.length) {
+        closeBlockEditor(); return;
+      }
+      var rows = [];
+      block.fieldKeys.forEach(function(key) {
+        var el = document.getElementById('be_' + key.replace(/[.\-]/g, '_'));
+        if (!el) return;
+        var value = el.value || '';
+        rows.push({ key: key, value: value, type: 'text' });
+        contentCache[key] = value;
+      });
+      if (rows.length > 0) await upsertRows(rows);
+    }
+    showToast('Блок сохранён!', 'success');
+    closeBlockEditor();
+    refreshBuilderPreview();
+  } catch(err) {
+    showToast('Ошибка: ' + err.message, 'error');
+  } finally {
+    if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = 'Сохранить'; }
+  }
+}
+
+// ---- Builder: library ----
+
+function showBlockLibrary() {
+  var el = document.getElementById('builder-library');
+  if (el) el.style.display = 'flex';
+}
+
+function closeBlockLibrary() {
+  var el = document.getElementById('builder-library');
+  if (el) el.style.display = 'none';
+}
+
+async function addBlockFromLibrary(templateId) {
+  closeBlockLibrary();
+  var page = BUILDER_PAGES.find(function(p) { return p.id === builderActivePage; }) || BUILDER_PAGES[0];
+  var blockId = templateId + '-' + Date.now();
+  var dynData = {
+    _template: templateId,
+    _label: TEMPLATE_LABELS[templateId] || templateId,
+    _desc: TEMPLATE_DESCS[templateId] || ''
+  };
+  var tFields = TEMPLATE_FIELDS[templateId] || [];
+  tFields.forEach(function(f) { dynData[f.key] = f.default || ''; });
+
+  var dynKey = 'dblock.' + page.id + '.' + blockId;
+  var dynJson = JSON.stringify(dynData);
+
+  try {
+    await upsertRows([{ key: dynKey, value: dynJson, type: 'json' }]);
+    contentCache[dynKey] = dynJson;
+
+    // Append to block config
+    var savedConfig = [];
+    try { var r = contentCache[page.key]; if (r) savedConfig = JSON.parse(r) || []; } catch(e) {}
+    var nextOrder = savedConfig.length > 0
+      ? Math.max.apply(null, savedConfig.map(function(b) { return b.order !== undefined ? b.order : 0; })) + 1
+      : page.blocks.length;
+    savedConfig.push({ id: blockId, visible: true, order: nextOrder });
+    var configJson = JSON.stringify(savedConfig);
+    await upsertRows([{ key: page.key, value: configJson, type: 'json' }]);
+    contentCache[page.key] = configJson;
+
+    showToast('Блок добавлен! Заполните его содержимое.', 'success');
+
+    // Re-render and auto-open editor
+    var contentArea = document.getElementById('content-area');
+    contentArea.classList.add('builder-active');
+    contentArea.innerHTML = renderBuilderTab();
+    openBlockEditor(blockId);
+  } catch(err) {
+    showToast('Ошибка: ' + err.message, 'error');
+  }
+}
+
+async function deleteDynamicBlock(blockId) {
+  if (!confirm('Удалить этот блок? Восстановить нельзя.')) return;
+  var page = BUILDER_PAGES.find(function(p) { return p.id === builderActivePage; }) || BUILDER_PAGES[0];
+  var dynKey = 'dblock.' + page.id + '.' + blockId;
+  try {
+    var savedConfig = [];
+    try { var r = contentCache[page.key]; if (r) savedConfig = JSON.parse(r) || []; } catch(e) {}
+    savedConfig = savedConfig.filter(function(b) { return b.id !== blockId; });
+    var configJson = JSON.stringify(savedConfig);
+    await upsertRows([{ key: page.key, value: configJson, type: 'json' }]);
+    contentCache[page.key] = configJson;
+    delete contentCache[dynKey];
+    // Delete row from Supabase
+    await sbFetch('/rest/v1/content?key=eq.' + encodeURIComponent(dynKey), { method: 'DELETE' });
+    showToast('Блок удалён', 'success');
+    var contentArea = document.getElementById('content-area');
+    contentArea.classList.add('builder-active');
+    contentArea.innerHTML = renderBuilderTab();
+  } catch(err) {
+    showToast('Ошибка: ' + err.message, 'error');
+  }
+}
+
+// ---- Builder: preview ----
+
+function refreshBuilderPreview() {
+  var iframe = document.getElementById('builder-iframe');
+  if (!iframe) return;
+  var src = iframe.src;
+  iframe.src = '';
+  setTimeout(function() { iframe.src = src; }, 50);
+}
+
+// ---- Builder: save block config ----
+
 async function saveBlockConfig() {
   var page = BUILDER_PAGES.find(function(p) { return p.id === builderActivePage; }) || BUILDER_PAGES[0];
-  var saveBtn = document.querySelector('[onclick="saveBlockConfig()"]');
+  var saveBtn = document.querySelector('.builder-left-footer .btn-save');
   var statusEl = document.getElementById('save-status-builder');
 
   if (saveBtn) {
     saveBtn.disabled = true;
-    saveBtn.innerHTML = '<div class="spinner" style="border-color:rgba(255,255,255,.3);border-top-color:#fff;width:14px;height:14px;border-width:2px;display:inline-block;"></div> Сохраняю...';
+    saveBtn.innerHTML = '<div class="spinner" style="border-color:rgba(255,255,255,.3);border-top-color:#fff;width:13px;height:13px;border-width:2px;display:inline-block;margin-right:6px;"></div> Сохраняю...';
   }
 
   try {
@@ -1047,7 +1498,6 @@ async function saveBlockConfig() {
       var checkbox = el.querySelector('input[type="checkbox"]');
       return { id: el.dataset.blockId, visible: checkbox ? checkbox.checked : true, order: index };
     });
-
     var configJson = JSON.stringify(config);
     await upsertRows([{ key: page.key, value: configJson, type: 'json' }]);
     contentCache[page.key] = configJson;
@@ -1056,13 +1506,14 @@ async function saveBlockConfig() {
       statusEl.textContent = 'Сохранено ' + new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
       statusEl.style.color = 'var(--green)';
     }
+    refreshBuilderPreview();
   } catch (err) {
     showToast('Ошибка: ' + err.message, 'error');
-    if (statusEl) { statusEl.textContent = 'Ошибка сохранения'; statusEl.style.color = 'var(--red)'; }
+    if (statusEl) { statusEl.textContent = 'Ошибка'; statusEl.style.color = 'var(--red)'; }
   } finally {
     if (saveBtn) {
       saveBtn.disabled = false;
-      saveBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Сохранить конструктор';
+      saveBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Сохранить';
     }
   }
 }
@@ -1084,3 +1535,11 @@ window.builderDragLeave = builderDragLeave;
 window.builderDrop = builderDrop;
 window.builderDragEnd = builderDragEnd;
 window.saveBlockConfig = saveBlockConfig;
+window.openBlockEditor = openBlockEditor;
+window.closeBlockEditor = closeBlockEditor;
+window.saveBlockEditor = saveBlockEditor;
+window.showBlockLibrary = showBlockLibrary;
+window.closeBlockLibrary = closeBlockLibrary;
+window.addBlockFromLibrary = addBlockFromLibrary;
+window.deleteDynamicBlock = deleteDynamicBlock;
+window.refreshBuilderPreview = refreshBuilderPreview;
