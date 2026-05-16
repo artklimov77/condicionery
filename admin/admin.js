@@ -605,9 +605,13 @@ function switchTab(tabId) {
 
 // ---- Render Tab ----
 function renderTab(tabId) {
+  var contentArea = document.getElementById('content-area');
+  if (tabId === 'builder') {
+    contentArea.innerHTML = renderBuilderTab();
+    return;
+  }
   var section = SECTIONS.find(function (s) { return s.id === tabId; });
   if (!section) return;
-  var contentArea = document.getElementById('content-area');
   contentArea.innerHTML = tabId === 'promotions'
     ? renderPromotionsTab(section)
     : renderStandardTab(section);
@@ -872,6 +876,197 @@ function escHtml(str) {
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
+// ---- PAGE BUILDER ----
+
+var BUILDER_PAGES = [
+  {
+    id: 'index',
+    label: 'Главная',
+    key: 'blocks.index',
+    blocks: [
+      { id: 'hero',             label: 'Hero-баннер',         desc: 'Главный экран с заголовком и кнопками' },
+      { id: 'stats',            label: 'Статистика',          desc: '15+ лет, 1000+ монтажей, рейтинг, гарантия' },
+      { id: 'clients',          label: 'Нам доверяют',        desc: 'Типы клиентов — бизнес-центры, квартиры...' },
+      { id: 'services',         label: 'Наши услуги',         desc: 'Три карточки: кондиционеры, насосы, вентиляция' },
+      { id: 'quiz',             label: 'Квиз-калькулятор',    desc: 'Подбор системы за 3 шага' },
+      { id: 'about-brief',      label: 'О компании (блок)',   desc: 'Кратко о компании + фото' },
+      { id: 'why',              label: 'Почему мы',           desc: '6 причин выбрать Nordic Air' },
+      { id: 'portfolio-preview',label: 'Примеры работ',       desc: 'Сетка с фото проектов' },
+      { id: 'telegram',         label: 'Telegram-канал',      desc: 'Виджет Telegram-канала' },
+      { id: 'steps',            label: 'Как работаем',        desc: '4 шага от заявки до монтажа' },
+      { id: 'reviews',          label: 'Отзывы',              desc: 'Отзывы клиентов с Яндекса' },
+      { id: 'faq',              label: 'FAQ',                  desc: 'Часто задаваемые вопросы' },
+      { id: 'zones',            label: 'Зоны обслуживания',   desc: 'Районы СПб и Ленобласти' },
+      { id: 'cta',              label: 'Призыв к действию',   desc: 'Финальный CTA-баннер' },
+    ]
+  }
+];
+
+TAB_META['builder'] = {
+  title: 'Конструктор страниц',
+  subtitle: 'Управляйте блоками: включайте, отключайте и меняйте их порядок'
+};
+
+var builderActivePage = 'index';
+var builderDragSrc = null;
+
+function selectBuilderPage(pageId) {
+  builderActivePage = pageId;
+  renderTab('builder');
+}
+
+function renderBuilderTab() {
+  var page = BUILDER_PAGES.find(function(p) { return p.id === builderActivePage; }) || BUILDER_PAGES[0];
+  var savedConfig = null;
+  try {
+    var raw = contentCache[page.key];
+    if (raw) savedConfig = JSON.parse(raw);
+  } catch (e) {}
+
+  var blocks = page.blocks.map(function(block, index) {
+    var saved = savedConfig && savedConfig.find(function(c) { return c.id === block.id; });
+    return {
+      id: block.id,
+      label: block.label,
+      desc: block.desc,
+      visible: saved ? saved.visible !== false : true,
+      order: saved ? saved.order : index
+    };
+  });
+  blocks.sort(function(a, b) { return a.order - b.order; });
+
+  var pageTabsHTML = BUILDER_PAGES.map(function(p) {
+    return '<button class="builder-page-tab' + (p.id === builderActivePage ? ' active' : '') + '" ' +
+      'onclick="selectBuilderPage(\'' + p.id + '\')">' + escHtml(p.label) + '</button>';
+  }).join('');
+
+  var blocksHTML = blocks.map(function(block) {
+    var checkedAttr = block.visible ? ' checked' : '';
+    var hiddenClass = block.visible ? '' : ' builder-block--hidden';
+    return '<div class="builder-block' + hiddenClass + '" draggable="true" data-block-id="' + escHtml(block.id) + '" ' +
+      'ondragstart="builderDragStart(event)" ondragover="builderDragOver(event)" ' +
+      'ondragleave="builderDragLeave(event)" ondrop="builderDrop(event)" ondragend="builderDragEnd(event)">' +
+      '<div class="builder-block-drag">' +
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>' +
+      '</div>' +
+      '<div class="builder-block-body">' +
+      '<div class="builder-block-name">' + escHtml(block.label) + '</div>' +
+      '<div class="builder-block-desc">' + escHtml(block.desc) + '</div>' +
+      '</div>' +
+      '<label class="builder-toggle">' +
+      '<input type="checkbox"' + checkedAttr + ' onchange="builderToggleBlock(this, \'' + escHtml(block.id) + '\')">' +
+      '<span class="builder-toggle-track"></span>' +
+      '</label>' +
+      '</div>';
+  }).join('');
+
+  return '<div class="section-panel">' +
+    '<div class="panel-header"><div>' +
+    '<div class="panel-title">Конструктор страниц</div>' +
+    '<div class="text-muted mt-4">Перетаскивайте блоки чтобы изменить их порядок. Переключатель скрывает/показывает блок на сайте.</div>' +
+    '</div></div>' +
+    '<div class="builder-page-tabs">' + pageTabsHTML + '</div>' +
+    '<div class="panel-body">' +
+    '<div class="builder-info">' +
+    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
+    ' Перетащите блоки для изменения порядка. Выключенный блок исчезнет со страницы сайта.' +
+    '</div>' +
+    '<div class="builder-blocks" id="builder-blocks">' + blocksHTML + '</div>' +
+    '</div>' +
+    '<div class="panel-footer">' +
+    '<span class="save-status" id="save-status-builder"></span>' +
+    '<button class="btn btn-save" onclick="saveBlockConfig()">' +
+    '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>' +
+    ' Сохранить конструктор</button></div></div>';
+}
+
+function builderToggleBlock(checkbox, blockId) {
+  var blockEl = checkbox.closest ? checkbox.closest('.builder-block') : null;
+  if (blockEl) blockEl.classList.toggle('builder-block--hidden', !checkbox.checked);
+}
+
+function builderDragStart(event) {
+  builderDragSrc = event.currentTarget;
+  event.currentTarget.classList.add('builder-block--dragging');
+  event.dataTransfer.effectAllowed = 'move';
+  event.dataTransfer.setData('text/plain', event.currentTarget.dataset.blockId);
+}
+
+function builderDragOver(event) {
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'move';
+  if (event.currentTarget !== builderDragSrc) {
+    event.currentTarget.classList.add('builder-block--over');
+  }
+}
+
+function builderDragLeave(event) {
+  event.currentTarget.classList.remove('builder-block--over');
+}
+
+function builderDrop(event) {
+  event.preventDefault();
+  var target = event.currentTarget;
+  target.classList.remove('builder-block--over');
+  if (!builderDragSrc || builderDragSrc === target) return;
+
+  var list = document.getElementById('builder-blocks');
+  var blocks = Array.from(list.querySelectorAll('.builder-block'));
+  var srcIdx = blocks.indexOf(builderDragSrc);
+  var tgtIdx = blocks.indexOf(target);
+
+  if (srcIdx < tgtIdx) {
+    list.insertBefore(builderDragSrc, target.nextSibling);
+  } else {
+    list.insertBefore(builderDragSrc, target);
+  }
+}
+
+function builderDragEnd(event) {
+  event.currentTarget.classList.remove('builder-block--dragging');
+  document.querySelectorAll('.builder-block--over').forEach(function(el) {
+    el.classList.remove('builder-block--over');
+  });
+  builderDragSrc = null;
+}
+
+async function saveBlockConfig() {
+  var page = BUILDER_PAGES.find(function(p) { return p.id === builderActivePage; }) || BUILDER_PAGES[0];
+  var saveBtn = document.querySelector('[onclick="saveBlockConfig()"]');
+  var statusEl = document.getElementById('save-status-builder');
+
+  if (saveBtn) {
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = '<div class="spinner" style="border-color:rgba(255,255,255,.3);border-top-color:#fff;width:14px;height:14px;border-width:2px;display:inline-block;"></div> Сохраняю...';
+  }
+
+  try {
+    var list = document.getElementById('builder-blocks');
+    var blockEls = list ? Array.from(list.querySelectorAll('.builder-block')) : [];
+    var config = blockEls.map(function(el, index) {
+      var checkbox = el.querySelector('input[type="checkbox"]');
+      return { id: el.dataset.blockId, visible: checkbox ? checkbox.checked : true, order: index };
+    });
+
+    var configJson = JSON.stringify(config);
+    await upsertRows([{ key: page.key, value: configJson, type: 'json' }]);
+    contentCache[page.key] = configJson;
+    showToast('Конструктор сохранён!', 'success');
+    if (statusEl) {
+      statusEl.textContent = 'Сохранено ' + new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+      statusEl.style.color = 'var(--green)';
+    }
+  } catch (err) {
+    showToast('Ошибка: ' + err.message, 'error');
+    if (statusEl) { statusEl.textContent = 'Ошибка сохранения'; statusEl.style.color = 'var(--red)'; }
+  } finally {
+    if (saveBtn) {
+      saveBtn.disabled = false;
+      saveBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Сохранить конструктор';
+    }
+  }
+}
+
 // ---- Expose globals ----
 window.switchTab = switchTab;
 window.saveSection = saveSection;
@@ -881,3 +1076,11 @@ window.handleLogin = handleLogin;
 window.showChangePassword = showChangePassword;
 window.closePwModal = closePwModal;
 window.doChangePassword = doChangePassword;
+window.selectBuilderPage = selectBuilderPage;
+window.builderToggleBlock = builderToggleBlock;
+window.builderDragStart = builderDragStart;
+window.builderDragOver = builderDragOver;
+window.builderDragLeave = builderDragLeave;
+window.builderDrop = builderDrop;
+window.builderDragEnd = builderDragEnd;
+window.saveBlockConfig = saveBlockConfig;

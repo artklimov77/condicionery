@@ -62,6 +62,9 @@
       // Apply content to DOM elements
       applyContent(contentMap);
 
+      // Apply page builder block config
+      applyBlockConfig(contentMap);
+
       // Handle countdown deadline updates
       updateCountdowns(contentMap);
 
@@ -127,6 +130,36 @@
           // Per-element error — skip silently
         }
       });
+    });
+  }
+
+  function applyBlockConfig(contentMap) {
+    // Detect page
+    var path = window.location.pathname;
+    var filename = path.split('/').pop() || '';
+    var pageId = 'index';
+    if (filename.indexOf('conditioners') !== -1) pageId = 'conditioners';
+    else if (filename.indexOf('heat-pumps') !== -1) pageId = 'heat';
+    else if (filename.indexOf('ventilation') !== -1) pageId = 'ventilation';
+    else if (filename.indexOf('about') !== -1) pageId = 'about';
+    else if (filename.indexOf('portfolio') !== -1) pageId = 'portfolio';
+
+    var configEntry = contentMap['blocks.' + pageId];
+    if (!configEntry || !configEntry.value) return;
+
+    var config;
+    try { config = JSON.parse(configEntry.value); } catch (e) { return; }
+    if (!Array.isArray(config) || config.length === 0) return;
+
+    var main = document.querySelector('main');
+    if (!main) return;
+
+    var sorted = config.slice().sort(function(a, b) { return a.order - b.order; });
+    sorted.forEach(function(block) {
+      var section = document.querySelector('[data-block-id="' + block.id + '"]');
+      if (!section) return;
+      section.style.display = block.visible ? '' : 'none';
+      main.appendChild(section);
     });
   }
 

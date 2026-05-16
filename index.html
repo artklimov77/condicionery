@@ -122,7 +122,7 @@
 <main>
 
   <!-- ====== HERO ====== -->
-  <section class="hero">
+  <section class="hero" data-block-id="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
 
@@ -212,7 +212,7 @@
   </section>
 
   <!-- ====== STATS BAR ====== -->
-  <section class="stats-bar">
+  <section class="stats-bar" data-block-id="stats">
     <div class="container">
       <div class="stats-inner">
         <div class="stat-item reveal">
@@ -236,7 +236,7 @@
   </section>
 
   <!-- ====== CLIENTS ====== -->
-  <section class="clients-section">
+  <section class="clients-section" data-block-id="clients">
     <div class="container">
       <div class="clients-label">Нам доверяют</div>
       <div class="clients-row">
@@ -272,12 +272,20 @@
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
           <span>Управляющие компании</span>
         </div>
+        <div class="client-card reveal" style="--delay:0.4s">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M3 13h18M8 8V5a1 1 0 011-1h6a1 1 0 011 1v3"/></svg>
+          <span>Квартиры</span>
+        </div>
+        <div class="client-card reveal" style="--delay:0.45s">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V9l4-4h10l4 4v12"/><path d="M9 21V13h6v8"/><path d="M3 9h18"/></svg>
+          <span>Таунхаусы</span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ====== SERVICES ====== -->
-  <section class="section" id="services">
+  <section class="section" id="services" data-block-id="services">
     <div class="container">
       <div class="section-header reveal">
         <span class="label">
@@ -390,7 +398,7 @@
   </section>
 
   <!-- ====== QUIZ CALCULATOR ====== -->
-  <section class="quiz-section" id="quiz">
+  <section class="quiz-section" id="quiz" data-block-id="quiz">
     <div class="container">
       <div class="section-header reveal">
         <div class="section-label">Подбор системы</div>
@@ -566,7 +574,7 @@
   </section>
 
   <!-- ====== ABOUT BRIEF ====== -->
-  <section class="section section--gray">
+  <section class="section section--gray" data-block-id="about-brief">
     <div class="container">
       <div class="info-grid">
         <div class="info-img reveal">
@@ -616,7 +624,7 @@
   </section>
 
   <!-- ====== WHY CHOOSE US ====== -->
-  <section class="section">
+  <section class="section" data-block-id="why">
     <div class="container">
       <div class="section-header reveal">
         <span class="label">Почему выбирают нас</span>
@@ -671,7 +679,7 @@
   </section>
 
   <!-- ====== PORTFOLIO PREVIEW ====== -->
-  <section class="section section--gray">
+  <section class="section section--gray" data-block-id="portfolio-preview">
     <div class="container">
       <div class="section-header reveal">
         <span class="label">Портфолио</span>
@@ -735,7 +743,7 @@
   </section>
 
   <!-- ====== TELEGRAM WIDGET ====== -->
-  <section class="section">
+  <section class="section" data-block-id="telegram">
     <div class="container">
       <div class="section-header reveal">
         <div class="section-label">Наши работы в Telegram</div>
@@ -758,21 +766,15 @@
           </div>
           <div class="tg-posts">
             <div class="tg-post">
-              <div class="tg-post-img" style="background:linear-gradient(135deg,#0B1F3A,#2563EB)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-              </div>
+              <div class="tg-post-img" style="background:url('/images/photo_2_2026-05-08_22-24-30.jpg') center/cover no-repeat;"></div>
               <div class="tg-post-text">Монтаж мульти-сплит в квартире 85 м²</div>
             </div>
             <div class="tg-post">
-              <div class="tg-post-img" style="background:linear-gradient(135deg,#1B4FC0,#0B1F3A)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"><path d="M2 22V8l4-4 4 4V4l4 4 4-4v16"/></svg>
-              </div>
+              <div class="tg-post-img" style="background:url('/images/photo_12_2026-05-08_22-24-30.jpg') center/cover no-repeat;"></div>
               <div class="tg-post-text">Тепловой насос в коттедже — до и после</div>
             </div>
             <div class="tg-post">
-              <div class="tg-post-img" style="background:linear-gradient(135deg,#0D2E5A,#1B4FC0)">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"><path d="M9.59 4.59A2 2 0 1111 8H2"/></svg>
-              </div>
+              <div class="tg-post-img" style="background:url('/images/photo_16_2026-05-08_22-24-30.jpg') center/cover no-repeat;"></div>
               <div class="tg-post-text">Вентиляция в ресторане 300 м²</div>
             </div>
           </div>
@@ -786,7 +788,7 @@
   </section>
 
   <!-- ====== HOW IT WORKS ====== -->
-  <section class="section">
+  <section class="section" data-block-id="steps">
     <div class="container">
       <div class="section-header reveal">
         <span class="label">Как мы работаем</span>
@@ -819,7 +821,7 @@
   </section>
 
   <!-- ====== TESTIMONIALS ====== -->
-  <section class="section section--gray">
+  <section class="section section--gray" data-block-id="reviews">
     <div class="container">
       <div class="section-header reveal">
         <span class="label">
@@ -871,7 +873,7 @@
   </section>
 
   <!-- ====== FAQ ====== -->
-  <section class="section">
+  <section class="section" data-block-id="faq">
     <div class="container">
       <div class="section-header reveal">
         <span class="label">Вопросы и ответы</span>
@@ -939,7 +941,7 @@
   </section>
 
   <!-- ====== ZONES ====== -->
-  <section class="zones-section">
+  <section class="zones-section" data-block-id="zones">
     <div class="container">
       <div class="zones-header reveal">
         <div class="section-label">Зоны обслуживания</div>
@@ -989,7 +991,7 @@
   </section>
 
   <!-- ====== CTA BANNER ====== -->
-  <section class="section section--gray">
+  <section class="section section--gray" data-block-id="cta">
     <div class="container">
       <div class="cta-banner reveal">
         <div class="cta-content">
