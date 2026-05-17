@@ -358,8 +358,8 @@
 
     var sorted = config.slice().sort(function(a, b) { return a.order - b.order; });
     sorted.forEach(function(block) {
-      // Try to find existing section
-      var section = document.querySelector('[data-block-id="' + block.id + '"]');
+      // Try to find existing section (search within main only)
+      var section = main.querySelector('[data-block-id="' + block.id + '"]');
 
       // If not found, check if it's a dynamic block and render it
       if (!section) {

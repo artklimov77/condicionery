@@ -1018,6 +1018,7 @@ TAB_META['builder'] = {
 
 var builderActivePage = 'index';
 var builderDragSrc = null;
+var builderDropOccurred = false;
 var builderActiveEditor = null;
 var builderActiveEditorDynamic = null;
 
@@ -1253,10 +1254,6 @@ function builderToggleBlock(checkbox, blockId) {
 }
 
 function builderDragStart(event) {
-  if (!event.target.closest || !event.target.closest('.builder-block-drag')) {
-    event.preventDefault();
-    return;
-  }
   builderDragSrc = event.currentTarget;
   event.currentTarget.classList.add('builder-block--dragging');
   event.dataTransfer.effectAllowed = 'move';
@@ -1277,6 +1274,7 @@ function builderDragLeave(event) {
 
 function builderDrop(event) {
   event.preventDefault();
+  builderDropOccurred = true;
   var target = event.currentTarget;
   target.classList.remove('builder-block--over');
   if (!builderDragSrc || builderDragSrc === target) return;
@@ -1295,7 +1293,10 @@ function builderDragEnd(event) {
   event.currentTarget.classList.remove('builder-block--dragging');
   document.querySelectorAll('.builder-block--over').forEach(function(el) { el.classList.remove('builder-block--over'); });
   builderDragSrc = null;
-  saveBlockConfig();
+  if (builderDropOccurred) {
+    builderDropOccurred = false;
+    saveBlockConfig();
+  }
 }
 
 // ---- Builder: block editor ----
