@@ -17,18 +17,14 @@ from telethon import TelegramClient
 from telethon.tl.types import InputMessagesFilterPhotos
 
 # ===== ВСТАВЬ СВОИ ДАННЫЕ =====
-API_ID   = 0           # число, например: 12345678
-API_HASH = ''          # строка, например: 'abcdef1234567890abcdef1234567890'
+API_ID   = 2040
+API_HASH = 'b18441a1ff607e10a989891a5462e627'
 CHANNEL  = 'nordicair' # username канала без @
 # ==============================
 
 SAVE_DIR = 'images/tg_all'
 
 async def main():
-    if not API_ID or not API_HASH:
-        print("Сначала заполни API_ID и API_HASH — получи на https://my.telegram.org")
-        return
-
     os.makedirs(SAVE_DIR, exist_ok=True)
 
     async with TelegramClient('tg_session', API_ID, API_HASH) as client:
