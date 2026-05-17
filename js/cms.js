@@ -343,6 +343,8 @@
     else if (filename.indexOf('ventilation') !== -1) pageId = 'ventilation';
     else if (filename.indexOf('about') !== -1) pageId = 'about';
     else if (filename.indexOf('portfolio') !== -1) pageId = 'portfolio';
+    else if (filename.indexOf('contacts') !== -1) pageId = 'contacts';
+    else if (filename.indexOf('promotions') !== -1) pageId = 'promotions';
 
     var configEntry = contentMap['blocks.' + pageId];
     if (!configEntry || !configEntry.value) return;

@@ -978,6 +978,36 @@ var BUILDER_PAGES = [
       { id: 'cta',     label: 'Призыв к действию', desc: 'CTA-баннер',
         fieldKeys: ['about.cta.title','about.cta.desc'] },
     ]
+  },
+  {
+    id: 'portfolio', label: 'Портфолио', url: '../portfolio.html', key: 'blocks.portfolio',
+    blocks: [
+      { id: 'hero',     label: 'Hero-баннер',      desc: 'Заголовок страницы', fieldKeys: [] },
+      { id: 'stats',    label: 'Статистика',        desc: 'Счётчики: объекты, лет, рейтинг, гарантия', fieldKeys: [] },
+      { id: 'projects', label: 'Проекты',           desc: 'Сетка карточек проектов', fieldKeys: [] },
+      { id: 'cta',      label: 'Призыв к действию', desc: 'CTA-баннер', fieldKeys: [] },
+    ]
+  },
+  {
+    id: 'contacts', label: 'Контакты', url: '../contacts.html', key: 'blocks.contacts',
+    blocks: [
+      { id: 'hero',     label: 'Hero-баннер',       desc: 'Заголовок страницы',
+        fieldKeys: ['contacts.hero.title','contacts.hero.desc','contacts.hero.tag1','contacts.hero.tag2','contacts.hero.tag3'] },
+      { id: 'contacts', label: 'Контакты и форма',  desc: 'Карточки контактов + форма заявки', fieldKeys: [] },
+      { id: 'promise',  label: 'Обещания',           desc: '15 мин / 1 день / 7/7',
+        fieldKeys: ['contacts.promise.n1','contacts.promise.l1','contacts.promise.n2','contacts.promise.l2','contacts.promise.n3','contacts.promise.l3'] },
+    ]
+  },
+  {
+    id: 'promotions', label: 'Акции', url: '../promotions.html', key: 'blocks.promotions',
+    blocks: [
+      { id: 'hero',   label: 'Hero-баннер',         desc: 'Заголовок страницы',
+        fieldKeys: ['promos.hero.title','promos.hero.sub'] },
+      { id: 'promos', label: 'Акции',                desc: '4 карточки акций',
+        fieldKeys: ['promos.section.label','promos.section.title','promos.section.sub'] },
+      { id: 'howto',  label: 'Как получить скидку', desc: '3 шага получения скидки', fieldKeys: [] },
+      { id: 'cta',    label: 'Призыв к действию',   desc: 'CTA-баннер', fieldKeys: [] },
+    ]
   }
 ];
 
@@ -1223,6 +1253,10 @@ function builderToggleBlock(checkbox, blockId) {
 }
 
 function builderDragStart(event) {
+  if (!event.target.closest || !event.target.closest('.builder-block-drag')) {
+    event.preventDefault();
+    return;
+  }
   builderDragSrc = event.currentTarget;
   event.currentTarget.classList.add('builder-block--dragging');
   event.dataTransfer.effectAllowed = 'move';
