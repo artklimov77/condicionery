@@ -2067,12 +2067,16 @@ p { color: var(--gray-600); }
   .cd-num { font-size: var(--text-xl); }
 }
 
-/* Brand photo cards (about.html) */
+/* Brand photo cards */
 .brands-photo-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   margin-bottom: 12px;
+}
+.brands-photo-grid--12 {
+  grid-template-columns: repeat(6, 1fr);
+  margin-bottom: 0;
 }
 .brand-photo-card {
   position: relative;
@@ -2101,9 +2105,15 @@ p { color: var(--gray-600); }
   padding: 28px 12px 10px;
   letter-spacing: .03em;
 }
+.brands-photo-grid--12 .brand-photo-label { font-size: .85rem; padding: 20px 10px 8px; }
+@media (max-width: 1100px) {
+  .brands-photo-grid--12 { grid-template-columns: repeat(4, 1fr); }
+}
 @media (max-width: 900px) {
   .brands-photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .brands-photo-grid--12 { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 480px) {
   .brands-photo-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .brands-photo-grid--12 { grid-template-columns: repeat(2, 1fr); gap: 8px; }
 }
