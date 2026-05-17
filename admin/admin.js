@@ -50,18 +50,21 @@ const SECTIONS = [
       { key: 'index.services.ac.f1',      label: 'Кондиционеры — пункт 1',            type: 'text',     default: 'Настенные, кассетные, канальные' },
       { key: 'index.services.ac.f2',      label: 'Кондиционеры — пункт 2',            type: 'text',     default: 'Балансировка и заправка фреоном' },
       { key: 'index.services.ac.f3',      label: 'Кондиционеры — пункт 3',            type: 'text',     default: 'Техническое обслуживание и ремонт' },
+      { key: 'index.services.ac.photo',   label: 'Кондиционеры — фото карточки',       type: 'image',    bucket: 'cms-images' },
       { key: 'index.services.heat.title', label: 'Тепл. насосы — карточка заголовок',  type: 'text',     default: 'Тепловые насосы' },
       { key: 'index.services.heat.desc',  label: 'Тепл. насосы — карточка описание',   type: 'textarea', default: 'Эффективное отопление без газа. Работают при морозах до −30°C. Экономия электроэнергии в 4 раза по сравнению с электрокотлом.' },
       { key: 'index.services.heat.price', label: 'Тепл. насосы — цена',               type: 'text',     default: '50 000 ₽' },
       { key: 'index.services.heat.f1',    label: 'Тепл. насосы — пункт 1',            type: 'text',     default: 'Тип воздух-воздух, срок службы 20 лет' },
       { key: 'index.services.heat.f2',    label: 'Тепл. насосы — пункт 2',            type: 'text',     default: 'Wi-Fi управление, умный дом' },
       { key: 'index.services.heat.f3',    label: 'Тепл. насосы — пункт 3',            type: 'text',     default: 'Летом — режим охлаждения' },
+      { key: 'index.services.heat.photo', label: 'Тепловые насосы — фото карточки',    type: 'image',    bucket: 'cms-images' },
       { key: 'index.services.vent.title', label: 'Вентиляция — карточка заголовок',    type: 'text',     default: 'Вентиляция' },
       { key: 'index.services.vent.desc',  label: 'Вентиляция — карточка описание',     type: 'textarea', default: 'Проектирование и монтаж приточно-вытяжных систем с рекуперацией для квартир, домов, офисов и производств.' },
       { key: 'index.services.vent.price', label: 'Вентиляция — цена',                 type: 'text',     default: '50 000 ₽' },
       { key: 'index.services.vent.f1',    label: 'Вентиляция — пункт 1',              type: 'text',     default: 'Бесплатный проект при заказе монтажа' },
       { key: 'index.services.vent.f2',    label: 'Вентиляция — пункт 2',              type: 'text',     default: 'Рекуперация тепла, шумоглушители' },
       { key: 'index.services.vent.f3',    label: 'Вентиляция — пункт 3',              type: 'text',     default: 'Управление с телефона, автоматика' },
+      { key: 'index.services.vent.photo', label: 'Вентиляция — фото карточки',         type: 'image',    bucket: 'cms-images' },
       { key: 'index.about.title',         label: 'О компании — заголовок блока',      type: 'text',     default: 'Работаем только с профессионалами, без посредников' },
       { key: 'index.about.text1',         label: 'О компании — первый абзац',         type: 'textarea', default: 'С 2011 года мы устанавливаем климатические системы в Санкт-Петербурге и области. Нет менеджеров и раздутого штата — только инженеры-монтажники с опытом от 10 лет.' },
       { key: 'index.about.text2',         label: 'О компании — второй абзац',         type: 'textarea', default: 'Руководитель компании Андрей Утищев лично разрабатывает проект и контролирует каждый монтаж. Вы общаетесь напрямую с исполнителем — никаких недопониманий.' },
@@ -71,6 +74,7 @@ const SECTIONS = [
       { key: 'index.about.b2.desc',       label: 'О компании — пункт 2 текст',       type: 'text',     default: 'Никаких скрытых доплат. Стоимость зафиксирована до начала работ.' },
       { key: 'index.about.b3.title',      label: 'О компании — пункт 3 заголовок',   type: 'text',     default: 'Рейтинг 5.0 на Яндексе' },
       { key: 'index.about.b3.desc',       label: 'О компании — пункт 3 текст',       type: 'text',     default: 'Сотни довольных клиентов — квартиры, офисы, производства, медицинские центры.' },
+      { key: 'index.about.photo',         label: 'О компании — фото блока',           type: 'image',    bucket: 'cms-images' },
       { key: 'index.why.title',           label: 'Почему мы — заголовок',            type: 'text',     default: '6 причин доверить климат Nordic Air' },
       { key: 'index.why.desc',            label: 'Почему мы — описание',             type: 'textarea', default: 'Мы думаем о деталях, которые другие упускают — именно поэтому клиенты возвращаются и рекомендуют нас.' },
       { key: 'index.why.1.title',         label: 'Причина 1 — заголовок',            type: 'text',     default: 'Монтаж за 1 день' },
@@ -120,6 +124,12 @@ const SECTIONS = [
       { key: 'index.faq.5.a',            label: 'FAQ 5 — ответ',                    type: 'textarea', default: 'Да, работаем по всему Санкт-Петербургу и Ленинградской области. Доставка оборудования в пределах СПб — бесплатно. Для объектов в Ленобласти уточняйте условия при звонке — в большинстве случаев транспортные расходы минимальны или включены в стоимость проекта.' },
       { key: 'index.cta.title',          label: 'CTA — заголовок',                  type: 'text',     default: 'Готовы обсудить ваш проект?' },
       { key: 'index.cta.desc',           label: 'CTA — описание',                   type: 'textarea', default: 'Получите бесплатный расчёт стоимости в течение 15 минут. Работаем 7 дней в неделю, с 9:00 до 21:00.' },
+      { key: 'index.portfolio.photo1',   label: 'Портфолио — фото 1',               type: 'image',    bucket: 'cms-images' },
+      { key: 'index.portfolio.photo2',   label: 'Портфолио — фото 2',               type: 'image',    bucket: 'cms-images' },
+      { key: 'index.portfolio.photo3',   label: 'Портфолио — фото 3',               type: 'image',    bucket: 'cms-images' },
+      { key: 'index.portfolio.photo4',   label: 'Портфолио — фото 4',               type: 'image',    bucket: 'cms-images' },
+      { key: 'index.portfolio.photo5',   label: 'Портфолио — фото 5',               type: 'image',    bucket: 'cms-images' },
+      { key: 'index.portfolio.photo6',   label: 'Портфолио — фото 6',               type: 'image',    bucket: 'cms-images' },
     ]
   },
   // 3. АКЦИИ
@@ -376,6 +386,12 @@ const SECTIONS = [
       { key: 'about.values.v4.desc',   label: 'Ценность 4 — описание',        type: 'textarea', default: 'Работаем аккуратно: стелем защитные покрытия, убираем за собой. Ваш интерьер остаётся в целости — только кондиционер прибавляется.' },
       { key: 'about.cta.title',        label: 'CTA — заголовок',              type: 'text',     default: 'Доверьте климат профессионалам' },
       { key: 'about.cta.desc',         label: 'CTA — описание',               type: 'textarea', default: '15 лет опыта, 1000+ довольных клиентов, рейтинг 5.0. Позвоните или оставьте заявку — ответим в течение 15 минут.' },
+      { key: 'about.gallery.photo1',   label: 'Галерея — фото 1',             type: 'image',    bucket: 'cms-images' },
+      { key: 'about.gallery.photo2',   label: 'Галерея — фото 2',             type: 'image',    bucket: 'cms-images' },
+      { key: 'about.gallery.photo3',   label: 'Галерея — фото 3',             type: 'image',    bucket: 'cms-images' },
+      { key: 'about.gallery.photo4',   label: 'Галерея — фото 4',             type: 'image',    bucket: 'cms-images' },
+      { key: 'about.gallery.photo5',   label: 'Галерея — фото 5',             type: 'image',    bucket: 'cms-images' },
+      { key: 'about.gallery.photo6',   label: 'Галерея — фото 6',             type: 'image',    bucket: 'cms-images' },
     ]
   },
   // 8. СТРАНИЦА КОНТАКТОВ
@@ -695,7 +711,7 @@ function renderImageField(field, currentValue, inputId) {
     '<div class="image-upload-actions">' +
     '<label class="btn-upload" for="' + fileInputId + '">' +
     '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Загрузить фото</label>' +
-    '<input type="file" id="' + fileInputId + '" accept="image/*" style="display:none" data-key="' + escHtml(field.key) + '" data-bucket="' + escHtml(field.bucket || 'cms-images') + '" data-preview="' + previewId + '" data-progress="' + progressId + '" onchange="handleImageUpload(this)">' +
+    '<input type="file" id="' + fileInputId + '" accept="image/*" style="display:none" data-key="' + escHtml(field.key) + '" data-bucket="' + escHtml(field.bucket || 'cms-images') + '" data-preview="' + previewId + '" data-progress="' + progressId + '" data-hidden-id="' + inputId + '" onchange="handleImageUpload(this)">' +
     '<div class="upload-progress" id="' + progressId + '"><div class="spinner"></div><span>Загружаю...</span></div>' +
     '</div>' + urlDisplay +
     '<input type="hidden" id="' + inputId + '" data-key="' + escHtml(field.key) + '" value="' + escHtml(currentValue) + '">' +
@@ -740,7 +756,7 @@ async function handleImageUpload(fileInput) {
 
     var publicUrl = SB_URL + '/storage/v1/object/public/' + bucket + '/' + filename;
 
-    var fieldInputId = 'field-' + key.replace(/\./g, '_');
+    var fieldInputId = fileInput.dataset.hiddenId || ('field-' + key.replace(/\./g, '_'));
     var hiddenInput = document.getElementById(fieldInputId);
     if (hiddenInput) hiddenInput.value = publicUrl;
 
@@ -889,13 +905,13 @@ var BUILDER_PAGES = [
       { id: 'stats',             label: 'Статистика',        desc: '15+ лет, 1000+ монтажей, рейтинг', fieldKeys: [] },
       { id: 'clients',           label: 'Нам доверяют',      desc: 'Типы клиентов', fieldKeys: [] },
       { id: 'services',          label: 'Наши услуги',       desc: 'Три карточки: кондиционеры, насосы, вентиляция',
-        fieldKeys: ['index.services.label','index.services.title','index.services.desc'] },
+        fieldKeys: ['index.services.label','index.services.title','index.services.desc','index.services.ac.photo','index.services.heat.photo','index.services.vent.photo'] },
       { id: 'quiz',              label: 'Квиз-калькулятор',  desc: 'Подбор системы за 3 шага', fieldKeys: [] },
       { id: 'about-brief',       label: 'О компании (блок)', desc: 'Кратко о компании + фото',
-        fieldKeys: ['index.about.title','index.about.text1','index.about.text2'] },
+        fieldKeys: ['index.about.title','index.about.text1','index.about.text2','index.about.photo'] },
       { id: 'why',               label: 'Почему мы',         desc: '6 причин выбрать Nordic Air',
         fieldKeys: ['index.why.title','index.why.desc'] },
-      { id: 'portfolio-preview', label: 'Примеры работ',     desc: 'Сетка с фото проектов', fieldKeys: [] },
+      { id: 'portfolio-preview', label: 'Примеры работ',     desc: 'Сетка с фото проектов', fieldKeys: ['index.portfolio.photo1','index.portfolio.photo2','index.portfolio.photo3','index.portfolio.photo4','index.portfolio.photo5','index.portfolio.photo6'] },
       { id: 'telegram',          label: 'Telegram-канал',    desc: 'Виджет Telegram-канала', fieldKeys: [] },
       { id: 'steps',             label: 'Как работаем',      desc: '4 шага от заявки до монтажа',
         fieldKeys: ['index.steps.title','index.steps.desc'] },
@@ -974,7 +990,7 @@ var BUILDER_PAGES = [
       { id: 'values',  label: 'Наши принципы',     desc: '4 ценности компании',
         fieldKeys: ['about.values.title','about.values.desc'] },
       { id: 'brands',  label: 'Партнёры',          desc: 'Официальные бренды', fieldKeys: [] },
-      { id: 'gallery', label: 'Галерея проектов',  desc: 'Примеры работ', fieldKeys: [] },
+      { id: 'gallery', label: 'Галерея проектов',  desc: 'Примеры работ', fieldKeys: ['about.gallery.photo1','about.gallery.photo2','about.gallery.photo3','about.gallery.photo4','about.gallery.photo5','about.gallery.photo6'] },
       { id: 'cta',     label: 'Призыв к действию', desc: 'CTA-баннер',
         fieldKeys: ['about.cta.title','about.cta.desc'] },
     ]
@@ -1033,20 +1049,20 @@ var TEMPLATE_FIELDS = {
     { key:'btn_href', label:'Ссылка кнопки',  type:'text',     default:'contacts.html' },
   ],
   gallery: [
-    { key:'title',  label:'Заголовок',  type:'text', default:'Галерея работ' },
-    { key:'photo1', label:'Фото 1 URL', type:'text', default:'' },
-    { key:'photo2', label:'Фото 2 URL', type:'text', default:'' },
-    { key:'photo3', label:'Фото 3 URL', type:'text', default:'' },
-    { key:'photo4', label:'Фото 4 URL', type:'text', default:'' },
-    { key:'photo5', label:'Фото 5 URL', type:'text', default:'' },
-    { key:'photo6', label:'Фото 6 URL', type:'text', default:'' },
+    { key:'title',  label:'Заголовок',  type:'text',  default:'Галерея работ' },
+    { key:'photo1', label:'Фото 1', type:'image', bucket:'cms-images', default:'' },
+    { key:'photo2', label:'Фото 2', type:'image', bucket:'cms-images', default:'' },
+    { key:'photo3', label:'Фото 3', type:'image', bucket:'cms-images', default:'' },
+    { key:'photo4', label:'Фото 4', type:'image', bucket:'cms-images', default:'' },
+    { key:'photo5', label:'Фото 5', type:'image', bucket:'cms-images', default:'' },
+    { key:'photo6', label:'Фото 6', type:'image', bucket:'cms-images', default:'' },
   ],
   'text-image': [
-    { key:'title',    label:'Заголовок',      type:'text',     default:'Заголовок блока' },
-    { key:'text',     label:'Текст',          type:'textarea', default:'Текст описания...' },
-    { key:'image',    label:'Изображение URL',type:'text',     default:'' },
-    { key:'btn_text', label:'Кнопка',         type:'text',     default:'Подробнее' },
-    { key:'btn_href', label:'Ссылка кнопки',  type:'text',     default:'contacts.html' },
+    { key:'title',    label:'Заголовок',  type:'text',     default:'Заголовок блока' },
+    { key:'text',     label:'Текст',      type:'textarea', default:'Текст описания...' },
+    { key:'image',    label:'Изображение',type:'image',    bucket:'cms-images', default:'' },
+    { key:'btn_text', label:'Кнопка',     type:'text',     default:'Подробнее' },
+    { key:'btn_href', label:'Ссылка',     type:'text',     default:'contacts.html' },
   ],
   stats: [
     { key:'stat1_num',   label:'Число 1',   type:'text', default:'1000+' },
@@ -1321,6 +1337,9 @@ function buildEditorFields(fields, prefix, dynData) {
       value = (v !== undefined && v !== '') ? v : (f.default || '');
     }
     var inputId = prefix + f.key.replace(/[.\-]/g, '_');
+    if (f.type === 'image') {
+      return renderImageField(f, value, inputId);
+    }
     if (f.type === 'textarea') {
       return '<div class="builder-editor-field">' +
         '<label class="form-label">' + escHtml(f.label) + '</label>' +
@@ -1414,7 +1433,9 @@ async function saveBlockEditor() {
         var el = document.getElementById('be_' + key.replace(/[.\-]/g, '_'));
         if (!el) return;
         var value = el.value || '';
-        rows.push({ key: key, value: value, type: 'text' });
+        var fieldDef = getFieldDef(key);
+        var fieldType = (fieldDef && fieldDef.type === 'image') ? 'image' : 'text';
+        rows.push({ key: key, value: value, type: fieldType });
         contentCache[key] = value;
       });
       if (rows.length > 0) await upsertRows(rows);
