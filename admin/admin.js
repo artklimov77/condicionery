@@ -228,6 +228,15 @@ const SECTIONS = [
       { key: 'ac.why.c3.desc',         label: 'Преимущество 3 — текст',      type: 'textarea', default: 'Вы защищены от проблем после установки. Исправим бесплатно, если что-то пойдёт не так.' },
       { key: 'ac.cta.title',           label: 'CTA — заголовок',             type: 'text',     default: 'Подберём кондиционер бесплатно' },
       { key: 'ac.cta.desc',            label: 'CTA — описание',              type: 'textarea', default: 'Позвоните или оставьте заявку. Специалист свяжется в течение 15 минут и поможет выбрать оптимальную модель под ваш бюджет.' },
+      { key: 'ac.gallery.photo1',      label: 'Галерея — фото 1',            type: 'image',    bucket: 'cms-images' },
+      { key: 'ac.gallery.photo2',      label: 'Галерея — фото 2',            type: 'image',    bucket: 'cms-images' },
+      { key: 'ac.gallery.photo3',      label: 'Галерея — фото 3',            type: 'image',    bucket: 'cms-images' },
+      { key: 'ac.gallery.photo4',      label: 'Галерея — фото 4',            type: 'image',    bucket: 'cms-images' },
+      { key: 'ac.gallery.photo5',      label: 'Галерея — фото 5',            type: 'image',    bucket: 'cms-images' },
+      { key: 'ac.gallery.photo6',      label: 'Галерея — фото 6',            type: 'image',    bucket: 'cms-images' },
+      { key: 'ac.gallery.photo7',      label: 'Галерея — фото 7',            type: 'image',    bucket: 'cms-images' },
+      { key: 'ac.gallery.photo8',      label: 'Галерея — фото 8',            type: 'image',    bucket: 'cms-images' },
+      { key: 'ac.gallery.photo9',      label: 'Галерея — фото 9',            type: 'image',    bucket: 'cms-images' },
     ]
   },
   // 5. ТЕПЛОВЫЕ НАСОСЫ
@@ -294,6 +303,12 @@ const SECTIONS = [
       { key: 'heat.adv.a6.desc',       label: 'Преимущество 6 — текст',       type: 'textarea', default: 'Режим кондиционирования включён в стоимость' },
       { key: 'heat.cta.title',         label: 'CTA — заголовок',              type: 'text',     default: 'Рассчитаем экономию для вашего дома' },
       { key: 'heat.cta.desc',          label: 'CTA — описание',               type: 'textarea', default: 'Бесплатная консультация. Покажем, сколько вы сэкономите за год, и подберём оптимальную модель под ваш объект.' },
+      { key: 'heat.gallery.photo1',    label: 'Галерея — фото 1',             type: 'image',    bucket: 'cms-images' },
+      { key: 'heat.gallery.photo2',    label: 'Галерея — фото 2',             type: 'image',    bucket: 'cms-images' },
+      { key: 'heat.gallery.photo3',    label: 'Галерея — фото 3',             type: 'image',    bucket: 'cms-images' },
+      { key: 'heat.gallery.photo4',    label: 'Галерея — фото 4',             type: 'image',    bucket: 'cms-images' },
+      { key: 'heat.gallery.photo5',    label: 'Галерея — фото 5',             type: 'image',    bucket: 'cms-images' },
+      { key: 'heat.gallery.photo6',    label: 'Галерея — фото 6',             type: 'image',    bucket: 'cms-images' },
     ]
   },
   // 6. ВЕНТИЛЯЦИЯ
@@ -357,6 +372,18 @@ const SECTIONS = [
       { key: 'vent.design.note',         label: 'Проектирование — сноска',    type: 'textarea', default: 'При заказе монтажа — проект в подарок. Экономия от 11 000 до 23 000 ₽' },
       { key: 'vent.cta.title',           label: 'CTA — заголовок',            type: 'text',     default: 'Спроектируем вентиляцию бесплатно' },
       { key: 'vent.cta.desc',            label: 'CTA — описание',             type: 'textarea', default: 'Оставьте заявку — инженер свяжется в течение 15 минут, уточнит задачу и назовёт точную стоимость.' },
+      { key: 'vent.type.1.photo',        label: 'Приточная — фото карточки',  type: 'image',    bucket: 'cms-images' },
+      { key: 'vent.type.2.photo',        label: 'Приточно-вытяжная — фото',   type: 'image',    bucket: 'cms-images' },
+      { key: 'vent.type.3.photo',        label: 'Промышленная — фото',        type: 'image',    bucket: 'cms-images' },
+      { key: 'vent.type.4.photo',        label: 'Бризер — фото карточки',     type: 'image',    bucket: 'cms-images' },
+      { key: 'vent.type.5.photo',        label: 'Дымоудаление — фото',        type: 'image',    bucket: 'cms-images' },
+      { key: 'vent.type.6.photo',        label: 'Осушение — фото карточки',   type: 'image',    bucket: 'cms-images' },
+      { key: 'vent.gallery.photo1',      label: 'Галерея — фото 1',           type: 'image',    bucket: 'cms-images' },
+      { key: 'vent.gallery.photo2',      label: 'Галерея — фото 2',           type: 'image',    bucket: 'cms-images' },
+      { key: 'vent.gallery.photo3',      label: 'Галерея — фото 3',           type: 'image',    bucket: 'cms-images' },
+      { key: 'vent.gallery.photo4',      label: 'Галерея — фото 4',           type: 'image',    bucket: 'cms-images' },
+      { key: 'vent.gallery.photo5',      label: 'Галерея — фото 5',           type: 'image',    bucket: 'cms-images' },
+      { key: 'vent.gallery.photo6',      label: 'Галерея — фото 6',           type: 'image',    bucket: 'cms-images' },
     ]
   },
   // 7. О КОМПАНИИ
@@ -414,6 +441,22 @@ const SECTIONS = [
       { key: 'contacts.promise.l3',    label: 'Обещание — подпись 3',         type: 'text',     default: 'Работаем без выходных' },
     ]
   },
+  // 9. ПОРТФОЛИО
+  {
+    id: 'portfolio', title: 'Портфолио',
+    subtitle: 'Фотографии карточек проектов на странице portfolio.html',
+    fields: [
+      { key: 'portfolio.photo1',       label: 'Проект 1 — фото',             type: 'image',    bucket: 'cms-images' },
+      { key: 'portfolio.photo2',       label: 'Проект 2 — фото',             type: 'image',    bucket: 'cms-images' },
+      { key: 'portfolio.photo3',       label: 'Проект 3 — фото',             type: 'image',    bucket: 'cms-images' },
+      { key: 'portfolio.photo4',       label: 'Проект 4 — фото',             type: 'image',    bucket: 'cms-images' },
+      { key: 'portfolio.photo5',       label: 'Проект 5 — фото',             type: 'image',    bucket: 'cms-images' },
+      { key: 'portfolio.photo6',       label: 'Проект 6 — фото',             type: 'image',    bucket: 'cms-images' },
+      { key: 'portfolio.photo7',       label: 'Проект 7 — фото',             type: 'image',    bucket: 'cms-images' },
+      { key: 'portfolio.photo8',       label: 'Проект 8 — фото',             type: 'image',    bucket: 'cms-images' },
+      { key: 'portfolio.photo9',       label: 'Проект 9 — фото',             type: 'image',    bucket: 'cms-images' },
+    ]
+  },
 ];
 
 const TAB_META = {
@@ -425,6 +468,7 @@ const TAB_META = {
   ventilation:   { title: 'Вентиляция',         subtitle: 'Все тексты страницы вентиляции' },
   about:         { title: 'О компании',         subtitle: 'Все тексты страницы о компании' },
   contacts_page: { title: 'Страница контактов', subtitle: 'Тексты страницы contacts.html' },
+  portfolio:     { title: 'Портфолио',          subtitle: 'Фотографии карточек проектов (portfolio.html)' },
 };
 
 // ---- State ----
@@ -939,7 +983,7 @@ var BUILDER_PAGES = [
         fieldKeys: ['ac.process.title','ac.process.desc'] },
       { id: 'why',     label: 'Почему Nordic Air', desc: '3 преимущества',
         fieldKeys: ['ac.why.title'] },
-      { id: 'gallery', label: 'Галерея работ',     desc: 'Фото выполненных работ', fieldKeys: [] },
+      { id: 'gallery', label: 'Галерея работ',     desc: 'Фото выполненных работ', fieldKeys: ['ac.gallery.photo1','ac.gallery.photo2','ac.gallery.photo3','ac.gallery.photo4','ac.gallery.photo5','ac.gallery.photo6','ac.gallery.photo7','ac.gallery.photo8','ac.gallery.photo9'] },
       { id: 'cta',     label: 'Призыв к действию', desc: 'CTA-баннер',
         fieldKeys: ['ac.cta.title','ac.cta.desc'] },
     ]
@@ -957,7 +1001,7 @@ var BUILDER_PAGES = [
         fieldKeys: ['heat.models.title','heat.models.desc'] },
       { id: 'advantages', label: 'Преимущества',        desc: '6 преимуществ',
         fieldKeys: ['heat.adv.title','heat.adv.desc'] },
-      { id: 'gallery',    label: 'Галерея работ',       desc: 'Фото выполненных работ', fieldKeys: [] },
+      { id: 'gallery',    label: 'Галерея работ',       desc: 'Фото выполненных работ', fieldKeys: ['heat.gallery.photo1','heat.gallery.photo2','heat.gallery.photo3','heat.gallery.photo4','heat.gallery.photo5','heat.gallery.photo6'] },
       { id: 'cta',        label: 'Призыв к действию',   desc: 'CTA-баннер',
         fieldKeys: ['heat.cta.title','heat.cta.desc'] },
     ]
@@ -973,8 +1017,8 @@ var BUILDER_PAGES = [
         fieldKeys: ['vent.tiers.title','vent.tiers.desc'] },
       { id: 'design',  label: 'Проектирование',    desc: 'Стоимость проекта',
         fieldKeys: ['vent.design.title','vent.design.desc'] },
-      { id: 'photo',   label: 'Фото-блок',         desc: 'Фото + описание', fieldKeys: [] },
-      { id: 'gallery', label: 'Галерея работ',     desc: 'Фото выполненных работ', fieldKeys: [] },
+      { id: 'photo',   label: 'Фото-блок',         desc: 'Фото + описание', fieldKeys: ['vent.type.1.photo','vent.type.2.photo','vent.type.3.photo','vent.type.4.photo','vent.type.5.photo','vent.type.6.photo'] },
+      { id: 'gallery', label: 'Галерея работ',     desc: 'Фото выполненных работ', fieldKeys: ['vent.gallery.photo1','vent.gallery.photo2','vent.gallery.photo3','vent.gallery.photo4','vent.gallery.photo5','vent.gallery.photo6'] },
       { id: 'cta',     label: 'Призыв к действию', desc: 'CTA-баннер',
         fieldKeys: ['vent.cta.title','vent.cta.desc'] },
     ]
@@ -1000,7 +1044,7 @@ var BUILDER_PAGES = [
     blocks: [
       { id: 'hero',     label: 'Hero-баннер',      desc: 'Заголовок страницы', fieldKeys: [] },
       { id: 'stats',    label: 'Статистика',        desc: 'Счётчики: объекты, лет, рейтинг, гарантия', fieldKeys: [] },
-      { id: 'projects', label: 'Проекты',           desc: 'Сетка карточек проектов', fieldKeys: [] },
+      { id: 'projects', label: 'Проекты',           desc: 'Сетка карточек проектов', fieldKeys: ['portfolio.photo1','portfolio.photo2','portfolio.photo3','portfolio.photo4','portfolio.photo5','portfolio.photo6','portfolio.photo7','portfolio.photo8','portfolio.photo9'] },
       { id: 'cta',      label: 'Призыв к действию', desc: 'CTA-баннер', fieldKeys: [] },
     ]
   },
