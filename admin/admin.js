@@ -871,6 +871,7 @@ async function saveSection(sectionId) {
       var el = document.getElementById(inputId);
       if (!el) return;
       var value = el.value || '';
+      if (field.type === 'image' && !value) return;
       rows.push({ key: field.key, value: value, type: field.type === 'image' ? 'image' : 'text' });
       contentCache[field.key] = value;
     });
