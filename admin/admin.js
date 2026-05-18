@@ -773,6 +773,12 @@ function renderImageField(field, currentValue, inputId) {
 async function handleImageUpload(fileInput) {
   var file = fileInput.files[0];
   if (!file) return;
+
+  if (!accessToken) {
+    showToast('Сессия истекла — обновите страницу и войдите заново', 'error');
+    return;
+  }
+
   var key = fileInput.dataset.key;
   var bucket = fileInput.dataset.bucket || 'cms-images';
   var previewId = fileInput.dataset.preview;
@@ -785,20 +791,26 @@ async function handleImageUpload(fileInput) {
   if (progressEl) progressEl.classList.add('visible');
   fileInput.disabled = true;
 
+  var controller = new AbortController();
+  var timeoutId = setTimeout(function () { controller.abort(); }, 30000);
+
   try {
     var ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
     var filename = key.replace(/\./g, '/') + '_' + Date.now() + '.' + ext;
 
     var uploadRes = await fetch(SB_URL + '/storage/v1/object/' + bucket + '/' + filename, {
       method: 'POST',
+      signal: controller.signal,
       headers: {
         'apikey': SB_KEY,
-        'Authorization': 'Bearer ' + accessToken,
+        'Authorization': 'Bearer ' + (accessToken || SB_KEY),
         'Content-Type': file.type,
         'x-upsert': 'true'
       },
       body: file
     });
+
+    clearTimeout(timeoutId);
 
     if (!uploadRes.ok) {
       var errData = await uploadRes.json().catch(function () { return {}; });
@@ -825,7 +837,12 @@ async function handleImageUpload(fileInput) {
     await upsertRows([{ key: key, value: publicUrl, type: 'image' }]);
     showToast('Фото загружено и сохранено!', 'success');
   } catch (err) {
-    showToast('Ошибка загрузки: ' + err.message, 'error');
+    clearTimeout(timeoutId);
+    var msg = err.name === 'AbortError'
+      ? 'Таймаут — сервер не ответил за 30 сек. Проверьте подключение и настройки Supabase Storage.'
+      : err.message;
+    showToast('Ошибка загрузки: ' + msg, 'error');
+    console.error('[upload]', err);
   } finally {
     if (progressEl) progressEl.classList.remove('visible');
     fileInput.disabled = false;
